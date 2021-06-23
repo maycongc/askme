@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
 import dangerImg from '../assets/images/danger.svg'
 
 import { useModal } from '../hooks/useModal'
@@ -10,9 +8,10 @@ type DangerousActionModalType = {
   title: string,
   description: string,
   buttonText: string,
+  handleModalAction: () => void
 }
 
-export function DangerousActionModal({ title, description, buttonText }: DangerousActionModalType) {
+export function DangerousActionModal({ title, description, buttonText, handleModalAction }: DangerousActionModalType) {
 
   const { isHidden, setIsHidden } = useModal();
 
@@ -41,7 +40,7 @@ export function DangerousActionModal({ title, description, buttonText }: Dangero
             Cancelar
           </button>
 
-          <button className="btn-confirm">
+          <button onClick={handleModalAction} className="btn-confirm">
             {buttonText}
           </button>
 

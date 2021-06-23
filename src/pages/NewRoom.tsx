@@ -7,13 +7,9 @@ import { HomeAside } from '../components/HomeAside';
 import { SignOutButton } from '../components/SignOutButton'
 import { UserInfoBar } from '../components/UserInfoBar'
 
-// import { useAuth } from '../hooks/useAuth';
-
 import '../styles/auth.scss';
 
 export function NewRoom() {
-  // const { user } = useAuth();
-
   return (
     <div id="page-auth">
       <HomeAside />

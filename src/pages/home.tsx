@@ -2,10 +2,10 @@ import { useHistory } from 'react-router-dom';
 
 import logoImg from '../assets/images/logo.svg';
 import googleImg from '../assets/images/google-logo.svg';
-import loginImg from '../assets/images/log-in.svg';
+import loginImg from '../assets/images/login.svg';
 
 import { Button } from '../components/Button';
-import { HomeAside } from '../components/HomeAside'
+import { HomeAside } from '../components/HomeAside';
 
 import { useAuth } from '../hooks/useAuth';
 
@@ -38,7 +38,7 @@ export function Home() {
 
           <div className="separator">Ou entre em uma sala</div>
 
-          <form action="">
+          <form action="#">
             <input 
               type="text" 
               placeholder="Digite o código da sala"
