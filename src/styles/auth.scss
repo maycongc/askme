@@ -1,18 +1,23 @@
+@import "variables";
+
 #page-auth {
   display: flex;
   align-items: stretch;
   height: 100vh;
+  width: 100vw;
 
   aside {
-    flex: 4;
+    flex: 4.5;
 
-    background: #835afd;
+    background: $color1;
     color: #fff;
 
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 
-    padding: 120px 80px;
+    padding: 0 2% 0 7%;
 
     img {
       max-width: 320px;
@@ -36,11 +41,13 @@
       opacity: 70%;
 
       width: 440px;
+      height: 64px;
     }
   }
 
   main {
     flex: 6;
+    flex-direction: column;
 
     padding: 0 32px;
 
@@ -73,12 +80,17 @@
         border-radius: 8px;
         padding: 0 16px;
         background: #fff;
-        border: 1px solid #a8a8b3;
+        border: 1px solid $gray1;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color1;
+        }
       }
 
       ::placeholder {
         font: 400 16px 'Roboto', sans-serif;
-        color: #a8a8b3;
+        color: $gray1;
       }
 
       button {
@@ -93,12 +105,12 @@
 
     p {
       font: 400 14px 'Roboto', sans-serif;
-      color: #737380;
+      color: $gray2;
       margin-top: 16px;
 
       a {
         margin-left: 4px;
-        color: #e559f9;
+        color: $color2;
       }
     }
   }
@@ -106,7 +118,7 @@
   .create-room {
     height: 50px;
     color: #fff;
-    background: #ea4335;
+    background: $color3;
     font-weight: 500;
     border-radius: 8px;
     border: 0;
@@ -130,7 +142,7 @@
 
   .separator {
     font: 400 14px 'Roboto', sans-serif;
-    color: #a8a8b3;
+    color: $gray1;
 
     margin: 32px 0;
     display: flex;
@@ -140,7 +152,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: #a8a8b3;
+      background: $gray1;
       margin-right: 16px;
     }
 
@@ -148,8 +160,25 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: #a8a8b3;
+      background: $gray1;
       margin-left: 16px;
     }
   }
+
+  .header {
+    position: absolute;
+    top: 2.5%;
+    right: 3.5%;
+
+    width: 100%;
+    height: 44px;
+    display: flex;    
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+      display: flex;
+      margin-left: 10px;
+    }
+  }  
 }

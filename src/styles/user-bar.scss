@@ -1,0 +1,21 @@
+@import "variables";
+
+.user-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 230px;
+
+  strong {
+    font: 700 17px 'Poppins', sans-serif;
+    margin-right: 6px;
+  }
+
+  img {
+    width: 40px;
+    border-radius: 20px;
+    border: 2px solid $color1;
+    
+  }
+}

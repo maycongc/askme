@@ -1,8 +1,10 @@
+@import "variables";
+
 .button {
   height: 50px;
   font: 500 16px 'Roboto', sans-serif;
   color: #fff;
-  background: #835afd;
+  background: $color1;
   border: 0;
   border-radius: 8px;
   padding: 0 32px;
@@ -26,5 +28,34 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+}
+
+.signOut {
+  height: 40px;
+  color: #fff;
+  background: $color4;
+  font: 500 16px 'Roboto', sans-serif;
+
+  border: 0;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 20px;
+
+  cursor: pointer;
+
+  transition: filter 0.3s;
+
+  img {
+    width: 21px;
+    margin-right: 5px;
+  }
+
+  &:hover {
+    filter: brightness(0.9);
   }
 }
