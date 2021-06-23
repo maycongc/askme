@@ -4,6 +4,8 @@ import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
 import { HomeAside } from '../components/HomeAside';
+import { SignOutButton } from '../components/SignOutButton'
+import { UserInfoBar } from '../components/UserInfoBar'
 
 // import { useAuth } from '../hooks/useAuth';
 
@@ -17,11 +19,16 @@ export function NewRoom() {
       <HomeAside />
 
       <main>
+        <div className="header">
+          <UserInfoBar />
+          <SignOutButton />
+        </div>
+
         <div className="main-content">
           <img src={logoImg} alt="Logo LetMeAsk" />
           <h2>Crie uma nova sala</h2>
 
-          <form action="">
+          <form action="#">
             <input
               type="text"
               placeholder="Nome da sala"
