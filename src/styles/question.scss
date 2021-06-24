@@ -51,20 +51,12 @@ article {
         margin-left: 16px;
       }
 
-      img.check:hover {
-        filter: brightness(0) saturate(100%) invert(32%) sepia(70%) saturate(2529%) hue-rotate(238deg) brightness(104%) contrast(98%);
-      }
-
-      img.answer:hover {
+      .check:hover, .answer:hover, .like:hover {
         filter: brightness(0) saturate(100%) invert(32%) sepia(70%) saturate(2529%) hue-rotate(238deg) brightness(104%) contrast(98%);
       }
 
       img.delete:hover, img.delete-selected {
         filter: brightness(0) saturate(100%) invert(44%) sepia(100%) saturate(4025%) hue-rotate(328deg) brightness(95%) contrast(90%);
-      }
-
-      img.like:hover {
-        filter: brightness(0) saturate(100%) invert(32%) sepia(70%) saturate(2529%) hue-rotate(238deg) brightness(104%) contrast(98%);
       }
     }
   }

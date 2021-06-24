@@ -3,21 +3,28 @@ import checkIcon from '../assets/images/check.svg';
 import deleteIcon from '../assets/images/delete.svg';
 import likeIcon from '../assets/images/like.svg';
 
+import { useModal } from '../hooks/useModal';
+
 import '../styles/question.scss';
 
 type QuestionProps = {
-  content: string,
+  content: string;
   user: {
-    name: string,
-    avatar: string,
+    id: string | undefined;
+    name: string;
+    avatar: string;
   }
+  roomAuthorId: string;
 }
 
 export function Question(props: QuestionProps){
-  const { content, user } = props;
+  const { content, user, roomAuthorId } = props;
 
-  const hide = {
-    display: 'none'
+  const { isHidden, setIsHidden, setType } = useModal();
+
+  function handleDeleteButton() {
+    setType('question');
+    setIsHidden(!isHidden)
   }
 
   return (
@@ -31,10 +38,39 @@ export function Question(props: QuestionProps){
         </div>
 
         <div className="question-actions">
-          <img className="check" src={checkIcon} alt="Ícone de respondido" style={{}} />
-          <img className="answer" src={answerIcon} alt="Ícone de destacar" style={{}} />
-          <img className="delete" src={deleteIcon} alt="Ícone de deletar" style={{}} />
-          <img className="like" src={likeIcon} alt="Ícone de deletar" style={hide} />
+          {
+            user.id === roomAuthorId
+            ?
+              <div>
+                <img
+                  className="check"
+                  src={checkIcon}
+                  alt="Ícone de respondido"
+                  style={{}}
+                />
+
+                <img
+                  className="answer"
+                  src={answerIcon}
+                  alt="Ícone de destacar"
+                  style={{}}
+                />
+
+                <img 
+                  className="delete"
+                  src={deleteIcon}
+                  alt="Ícone de deletar"
+                  style={{}}
+                  onClick={handleDeleteButton}
+                /> 
+              </div>
+            :
+              <img
+                className="like"
+                src={likeIcon}
+                alt="Ícone de deletar"
+              />
+          }
         </div>
       </div>
     </article>
