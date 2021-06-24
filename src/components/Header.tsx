@@ -6,16 +6,20 @@ import copyImg from '../assets/images/copy.svg';
 
 import { UserInfoBar } from '../components/UserInfoBar';
 
-import '../styles/header.scss';
+import { useModal } from '../hooks/useModal';
 import { useAuth } from '../hooks/useAuth';
+
+import '../styles/header.scss';
 
 type HeaderProps = {
   code: string,
+  authorId: string;
 }
 
 export function Header(props: HeaderProps) {
   const { user } = useAuth();
-  const roomId = props.code;
+  const { isHidden, setIsHidden, setType } = useModal();
+  const { authorId, code: roomId } = props;
 
   function copyToClipboard() {
     navigator.clipboard.writeText(roomId);
@@ -32,31 +36,42 @@ export function Header(props: HeaderProps) {
     })
   }
 
+  function handleCloseRoom() {
+    setType('room')
+    setIsHidden(!isHidden)
+  }
+
   return (
-    <header>
-      <div className="logo">
-        <Link to={'/'}>
-          <img src={logoImg} alt="Imagem da logo" />
-        </Link>
-      </div>
+    <div className="content">
+      <header>
+        <div className="logo">
+          <Link to={'/'}>
+            <img src={logoImg} alt="Imagem da logo" />
+          </Link>
+        </div>
 
-      <div className="buttons">
-        <Toaster />
-        {user ? <UserInfoBar /> : ''}
+        <div className="buttons">
+          <Toaster />
+          {user && <UserInfoBar />}
 
-        <button onClick={copyToClipboard} className="room-button">
-          <div>
-            <img src={copyImg} alt="Ícone de copiar" />
-          </div>
-          <span>
-            Sala #{roomId}
-          </span>
-        </button>
+          <button onClick={copyToClipboard} className="room-button">
+            <div>
+              <img src={copyImg} alt="Ícone de copiar" />
+            </div>
+            <span>
+              Sala #{roomId}
+            </span>
+          </button>
 
-        <button className="close-room-button">
-          Encerrar sala
-        </button>
-      </div>
-    </header>
+          {
+            user?.id === authorId 
+              && 
+                <button onClick={handleCloseRoom} className="close-room-button">
+                  Encerrar sala
+                </button>
+          }
+        </div>
+      </header>
+    </div>
   );
 }
