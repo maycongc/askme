@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Home } from "./pages/Home";
+import { Home } from "./pages/home";
 import { NewRoom } from "./pages/NewRoom";
 import { Room } from "./pages/Room";
 
