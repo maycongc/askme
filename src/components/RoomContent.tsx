@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Button } from '../components/Button';
@@ -13,12 +13,58 @@ import '../styles/room-content.scss';
 
 type RoomContentProps = {
   code: string;
+  authorId: string;
+  title: string
+}
+
+type FirebaseQuestionsProps = Record<string, {
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isHighlighted: boolean;
+  isAnswered: boolean;
+}>
+
+type QuestionProps = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isHighlighted: boolean;
+  isAnswered: boolean;
 }
 
 export function RoomContent(props: RoomContentProps) {
   const { user } = useAuth();
-  const roomId = props.code;
+  const { code: roomId, authorId, title } = props;
+
   const [question, setQuestion] = useState('');
+  const [questions, setQuestions] = useState<Array<QuestionProps>>([]);
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    roomRef.on('value', room => {
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestionsProps = databaseRoom.questions ?? {};
+
+      const parsedQuestions = Object.entries(firebaseQuestions).map(([ key, value ]) => {
+        return {
+          id: key,
+          content: value.content,
+          author: value.author,
+          isHighlighted: value.isHighlighted,
+          isAnswered: value.isAnswered,
+        }
+      });
+
+      setQuestions(parsedQuestions);
+    })
+  }, [roomId]);
 
   async function handleNewQuestion(event: FormEvent) {
     event.preventDefault();
@@ -64,31 +110,54 @@ export function RoomContent(props: RoomContentProps) {
       <Toaster />
 
       <div className="room-title">
-        <h1>Sala React Q&amp;A</h1>
-        <span>4 perguntas</span>
-      </div>
-
-      <form onSubmit={handleNewQuestion}>
-        <textarea
-          placeholder="O que você quer perguntar?"
-          onChange={event => setQuestion(event.target.value)}
-          value={question}
-        />
-
-        <div className="form-footer">
+        <h1>Sala {title}</h1>
+        <span>
           {
-          !user
-            ? <span>Para enviar uma pergunta, <button>faça seu login.</button></span>
-            : <UserInfoBar />
+            questions && questions.length > 1
+              ? `${questions.length} perguntas`
+              : `${questions.length} pergunta`
           }
-
-          <Button type="submit" disabled={!user}>
-            Enviar pergunta
-          </Button>
-        </div>
-      </form>
-
-      <Question content={'texto principal'} user={{ avatar: '', name: 'Carlos Silva' }} />
+        </span>
+      </div>
+      {
+        user?.id !== authorId
+          &&
+            <form onSubmit={handleNewQuestion}>
+              <textarea
+                placeholder="O que você quer perguntar?"
+                onChange={event => setQuestion(event.target.value)}
+                value={question}
+              />
+      
+              <div className="form-footer">
+                {
+                !user
+                  ? <span>Para enviar uma pergunta, <button>faça seu login.</button></span>
+                  : <UserInfoBar />
+                }
+      
+                <Button type="submit" disabled={!user}>
+                  Enviar pergunta
+                </Button>
+              </div>
+            </form>
+      }
+      
+      
+      { 
+        questions.map(question => (
+          <Question
+            key={question.id}
+            content={question.content}
+            user={{ 
+              id: user?.id,
+              avatar: question.author.avatar,
+              name: question.author.name 
+            }}
+            roomAuthorId={authorId}
+          />
+        )) 
+      }
     </main>
   );
 }
