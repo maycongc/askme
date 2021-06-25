@@ -42,16 +42,29 @@ article {
     }
 
     .question-actions {
-      img {
+      button {
         cursor: pointer;
         overflow: hidden;
+        background: none;
+        border: 0;
       }
 
-      img + img {
+      .like-content {
+        display: flex;
+        align-items: flex-end;
+        gap: 7px;
+
+        span {
+          font: 400 16px 'Poppins', sans-serif;
+          color: $gray2;
+        }
+      }
+
+      button + button {
         margin-left: 16px;
       }
 
-      .check:hover, .answer:hover, .like:hover {
+      .check:hover, .answer:hover, .like:hover, .highlighted, .liked {
         filter: brightness(0) saturate(100%) invert(32%) sepia(70%) saturate(2529%) hue-rotate(238deg) brightness(104%) contrast(98%);
       }
 

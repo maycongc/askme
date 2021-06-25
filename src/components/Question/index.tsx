@@ -1,30 +1,50 @@
+import { useState } from 'react';
+
 import answerIcon from '../../assets/images/answer.svg';
 import checkIcon from '../../assets/images/check.svg';
 import deleteIcon from '../../assets/images/delete.svg';
 import likeIcon from '../../assets/images/like.svg';
 
 import { useModal } from '../../hooks/useModal';
+import { database } from '../../services/firebase';
+
+import { QuestionProps } from '../../pages/Room'
 
 import './styles.scss';
 
-type QuestionProps = {
-  content: string;
-  user: {
-    id: string | undefined;
-    name: string;
-    avatar: string;
-  }
+export function Question(props: QuestionProps & {
+  userId: string | undefined;
   roomAuthorId: string;
-}
-
-export function Question(props: QuestionProps){
-  const { content, user, roomAuthorId } = props;
+  roomId: string;
+}){
+  const { 
+    content,
+    author,
+    roomAuthorId,
+    roomId,
+    id,
+    isAnswered,
+    isHighlighted,
+    userId,
+    likeId,
+    likeCount,
+  } = props;
 
   const { isHidden, setIsHidden, setType } = useModal();
 
   function handleDeleteButton() {
     setType('question');
-    setIsHidden(!isHidden)
+    setIsHidden(!isHidden);
+  }
+
+  async function handleLikeButton(questionId: string, likeId: string | undefined) {
+    if(likeId) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
+        authorId: userId,
+      });
+    }
   }
 
   return (
@@ -33,43 +53,36 @@ export function Question(props: QuestionProps){
 
       <div className="question-footer">
         <div className="question-user-info">
-          <img src={user.avatar} alt="Foto de usuário" />
-          <span>{user.name}</span>
+          <img src={author.avatar} alt="Foto de usuário" />
+          <span>{author.name}</span>
         </div>
 
         <div className="question-actions">
           {
-            user.id === roomAuthorId
+            userId === roomAuthorId
             ?
               <div>
-                <img
-                  className="check"
-                  src={checkIcon}
-                  alt="Ícone de respondido"
-                  style={{}}
-                />
+                <button>
+                  <img className="check" src={checkIcon} alt="Ícone de respondido" />
+                </button>
 
-                <img
-                  className="answer"
-                  src={answerIcon}
-                  alt="Ícone de destacar"
-                  style={{}}
-                />
-
-                <img 
-                  className="delete"
-                  src={deleteIcon}
-                  alt="Ícone de deletar"
-                  style={{}}
-                  onClick={handleDeleteButton}
-                /> 
+                <button>
+                  <img className="answer" src={answerIcon} alt="Ícone de destacar" />
+                </button>
+                
+                <button onClick={handleDeleteButton}>
+                  <img className="delete" src={deleteIcon} alt="Ícone de deletar" /> 
+                </button>
+                
               </div>
             :
-              <img
-                className="like"
-                src={likeIcon}
-                alt="Ícone de deletar"
-              />
+              <div className="like-content">
+                <span>{likeCount > 0 && likeCount}</span>
+
+                <button onClick={() => handleLikeButton(id, likeId)}>
+                  <img className={`like ${likeId && 'liked'}`} src={likeIcon} alt="Ícone de deletar" />
+                </button>
+              </div>
           }
         </div>
       </div>
