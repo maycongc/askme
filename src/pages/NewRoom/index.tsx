@@ -1,5 +1,5 @@
 import { FormEvent, useState, useEffect } from 'react';
- import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
 
@@ -10,7 +10,6 @@ import { UserInfo } from '../../components/UserInfo'
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { toastError } from '../../services/toast';
 import { database } from '../../services/firebase';
 
 import '../Home/styles.scss';
@@ -22,11 +21,8 @@ export function NewRoom() {
   const history = useHistory();
 
   useEffect(() => {
-    if(!user) {
-      toastError('Error. User needs to be authenticated.');
-      return history.push('/')
-    };
-  })
+    if(!user) return history.push('/');
+  }, [user, history])
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
