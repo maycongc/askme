@@ -10,7 +10,7 @@ export const toastError = (text: string) => toast.error(text, {
   }
 })
 
-export const toastSuccess = (text: string) => toast.error(text, {
+export const toastSuccess = (text: string) => toast.success(text, {
   duration: 3000,
   style: {
     border: '1px solid #5ac92a',
