@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useEffect } from 'react';
 
 import closeRoomIcon from '../../assets/images/modal-close.svg'
@@ -8,20 +8,22 @@ import { useModal } from '../../hooks/useModal'
 
 import './styles.scss';
 
-type DangerousActionModalProps = {
-  type: string;
-  handleModalAction: () => void;
-}
-
 type ModalInfoProps = {
   title: string;
   description: string;
-  buttonText: string;
 }
 
-export function DangerousActionModal({ handleModalAction }: DangerousActionModalProps) {
+type ModalProps = {
+  buttonConfirm: ReactNode;
+}
 
-  const { isHidden, setIsHidden, type } = useModal();
+export function DangerousActionModal({ buttonConfirm }: ModalProps) {
+
+  const {
+    isHidden,
+    setIsHidden,
+    type,
+  } = useModal();
 
   const [modalInfo, setModalInfo] = useState<ModalInfoProps>();
 
@@ -31,7 +33,6 @@ export function DangerousActionModal({ handleModalAction }: DangerousActionModal
         setModalInfo({
           title: 'Encerrar sala',
           description: 'Tem certeza que você deseja encerrar esta sala?',
-          buttonText: 'Sim, encerrar'
         });
         break;
       
@@ -39,7 +40,6 @@ export function DangerousActionModal({ handleModalAction }: DangerousActionModal
         setModalInfo({
           title: 'Excluir pergunta',
           description: 'Tem certeza que você deseja excluir esta pergunta?',
-          buttonText: 'Sim, excluir'
         });
         break;
     
@@ -48,7 +48,7 @@ export function DangerousActionModal({ handleModalAction }: DangerousActionModal
     }
   }, [type])
 
-  function toggleModal() {
+  function handleCancelButton() {
     setIsHidden(true);
   }
 
@@ -69,14 +69,11 @@ export function DangerousActionModal({ handleModalAction }: DangerousActionModal
         <p>{modalInfo?.description}</p>
         <div className="modal-buttons">
 
-          <button onClick={toggleModal} className="btn-cancel">
+          <button onClick={handleCancelButton} className="btn-cancel">
             Cancelar
           </button>
 
-          <button onClick={handleModalAction} className="btn-confirm">
-            {modalInfo?.buttonText}
-          </button>
-
+          {buttonConfirm}
         </div>
       </div>
     </div>
