@@ -65,74 +65,68 @@ export function RoomContent(props: RoomContentProps) {
       <div className="room-title">
         <h1>Sala {title}</h1>
         <span>
-          {
-            questions && questions.length > 1
-              ? `${questions.length} perguntas`
-              : `${questions.length} pergunta`
-          }
+          { questions && questions.length > 1 ? (
+            `${questions.length} perguntas`
+          ) : (
+            `${questions.length} pergunta`
+          )}
         </span>
       </div>
-      {
-        user?.id !== authorId
-          &&
-            <form onSubmit={handleNewQuestion}>
-              <textarea
-                placeholder="O que você quer perguntar?"
-                onChange={event => setQuestion(event.target.value)}
-                value={question}
-              />
-      
-              <div className="form-footer">
-                {
-                !user
-                  ? <span>
-                      Para enviar uma pergunta
-                      , <button onClick={handleLogin}>faça seu login.</button>
-                    </span>
-                  : <UserInfo />
-                }
-      
-                <Button type="submit" disabled={!user}>
-                  Enviar pergunta
-                </Button>
-              </div>
-            </form>
-      }
-      
-      {
-        questions.length === 0
-          && 
-            <div className="empty-questions">
-              <img src={emptyQuestionsImg} alt="" />
-              <strong>
-                Nenhuma pergunta por aqui...
-              </strong>
-              <p>
-                Faça seu login e seja a primeira pessoa a fazer uma pergunta!
-              </p>
-            </div>
-      }
 
-      { 
-        questions.map(question => (
-          <Question
-            key={question.id}
-            id={question.id}
-            content={question.content}
-            author={{ 
-              avatar: question.author.avatar,
-              name: question.author.name 
-            }}
-            isAnswered={question.isAnswered}
-            isHighlighted={question.isHighlighted}
-            likeId={question.likeId}
-            likeCount={question.likeCount}
-            roomAuthorId={authorId}
-            roomId={roomId}
-            userId={user?.id}
+      { user?.id !== authorId && (
+        <form onSubmit={handleNewQuestion}>
+          <textarea
+            placeholder="O que você quer perguntar?"
+            onChange={event => setQuestion(event.target.value)}
+            value={question}
           />
-        )) 
-      }
+
+          <div className="form-footer">
+            { !user ? (
+              <span>
+                Para enviar uma pergunta, <button onClick={handleLogin}>faça seu login.</button>
+              </span>
+            ) : (
+              <UserInfo />
+            )}
+
+            <Button type="submit" disabled={!user}>
+              Enviar pergunta
+            </Button>
+          </div>
+        </form>
+      )}
+      
+      { questions.length === 0 && (
+        <div className="empty-questions">
+          <img src={emptyQuestionsImg} alt="" />
+          <strong>
+            Nenhuma pergunta por aqui...
+          </strong>
+          <p>
+            Faça seu login e seja a primeira pessoa a fazer uma pergunta!
+          </p>
+        </div>
+      )}
+
+      { questions.map(question => (
+        <Question
+          key={question.id}
+          id={question.id}
+          content={question.content}
+          author={{ 
+            avatar: question.author.avatar,
+            name: question.author.name 
+          }}
+          isAnswered={question.isAnswered}
+          isHighlighted={question.isHighlighted}
+          likeId={question.likeId}
+          likeCount={question.likeCount}
+          roomAuthorId={authorId}
+          roomId={roomId}
+          userId={user?.id}
+        />
+      ))}
     </main>
   );
 }

@@ -60,17 +60,15 @@ export function RoomHeader(props: HeaderProps) {
             </span>
           </button>
 
-          {
-            user?.id === authorId 
-              && 
-                <button onClick={handleCloseRoom} className="close-room-button">
-                  Encerrar sala
-                </button>
-          }
+          { user?.id === authorId && (
+            <button onClick={handleCloseRoom} className="close-room-button">
+              Encerrar sala
+            </button>
+          )}
 
-          {
-            user?.id && <SignOutButton />
-          }
+          { user?.id && (
+            <SignOutButton />
+          )}
         </div>
       </header>
     </div>

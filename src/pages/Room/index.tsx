@@ -104,17 +104,15 @@ export function Room(){
 
   return (
     <div id="page-room">
-      {
-        roomInfo.authorId === user?.id
-          &&
-          <DangerousActionModal 
-            buttonConfirm={
-              <button onClick={handleModalAction} className="btn-confirm">
-                {info.type === 'room' ? 'Sim, encerrar' : 'Sim, excluir'}
-              </button>
-            }
-          />
-      }
+      { roomInfo.authorId === user?.id && (
+        <DangerousActionModal 
+          buttonConfirm={
+            <button onClick={handleModalAction} className="btn-confirm">
+              {info.type === 'room' ? 'Sim, encerrar' : 'Sim, excluir'}
+            </button>
+          }
+        />
+      )}
       
       <RoomHeader code={roomId} authorId={roomInfo.authorId} />
       <RoomContent

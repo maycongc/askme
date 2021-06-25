@@ -44,14 +44,12 @@ export function NewRoom() {
       <Aside />
 
       <main>
-        {
-          user 
-            &&
-            <div className="header">
-              <UserInfo />
-              <SignOutButton />
-            </div>
-        }
+        { user && (
+          <div className="header">
+            <UserInfo />
+            <SignOutButton />
+          </div>
+        )}
 
         <div className="main-content">
           <img src={logoImg} alt="Logo LetMeAsk" />

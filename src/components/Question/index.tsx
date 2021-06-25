@@ -89,32 +89,31 @@ export function Question(props: QuestionProps & {
         </div>
 
         <div className="question-actions">
-          {
-            userId === roomAuthorId
-            ?
-              <div>
-                <button onClick={handleAnswerButton}>
-                  <img className={`check ${isAnswered && 'answered'}`} src={checkIcon} alt="Ícone de respondido" />
-                </button>
+          { userId === roomAuthorId ? (
+            <div>
+              <button onClick={handleAnswerButton}>
+                <img className={`check ${isAnswered && 'answered'}`} src={checkIcon} alt="Ícone de respondido" />
+              </button>
 
-                <button onClick={handleHighlightButton}>
-                  <img className={`answer ${isHighlighted && 'highlighted'}`} src={answerIcon} alt="Ícone de destacar" />
-                </button>
-                
-                <button onClick={handleDeleteButton}>
-                  <img className="delete" src={deleteIcon} alt="Ícone de deletar" /> 
-                </button>
-                
-              </div>
-            :
-              <div className="like-content">
-                <span>{likeCount > 0 && likeCount}</span>
+              <button onClick={handleHighlightButton}>
+                <img className={`answer ${isHighlighted && 'highlighted'}`} src={answerIcon} alt="Ícone de destacar" />
+              </button>
+              
+              <button onClick={handleDeleteButton}>
+                <img className="delete" src={deleteIcon} alt="Ícone de deletar" /> 
+              </button>
+            </div>
+          ) : (
+            <div className="like-content">
+              <span>{likeCount > 0 && likeCount}</span>
 
+              { !isAnswered && (
                 <button onClick={() => handleLikeButton()}>
                   <img className={`like ${likeId && 'liked'}`} src={likeIcon} alt="Ícone de deletar" />
                 </button>
-              </div>
-          }
+              )}
+            </div>
+          )}
         </div>
       </div>
     </article>
