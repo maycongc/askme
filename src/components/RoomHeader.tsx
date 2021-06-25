@@ -16,7 +16,7 @@ type HeaderProps = {
   authorId: string;
 }
 
-export function Header(props: HeaderProps) {
+export function RoomHeader(props: HeaderProps) {
   const { user } = useAuth();
   const { isHidden, setIsHidden, setType } = useModal();
   const { authorId, code: roomId } = props;

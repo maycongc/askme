@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Header } from '../components/RoomHeader'
+import { RoomHeader } from '../components/RoomHeader'
 import { RoomContent } from '../components/RoomContent'
 import { DangerousActionModal } from '../components/DangerousActionModal';
 
@@ -88,7 +88,7 @@ export function Room(){
           />
       }
       
-      <Header code={roomId} authorId={roomInfo.authorId} />
+      <RoomHeader code={roomId} authorId={roomInfo.authorId} />
       <RoomContent
         code={roomId}
         authorId={roomInfo.authorId}
