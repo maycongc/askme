@@ -9,6 +9,8 @@ import { useAuth } from '../hooks/useAuth';
 
 import { database } from '../services/firebase';
 
+import emptyQuestionsImg from '../assets/images/empty-questions.svg'
+
 import '../styles/room-content.scss';
 
 type RoomContentProps = {
@@ -143,7 +145,20 @@ export function RoomContent(props: RoomContentProps) {
             </form>
       }
       
-      
+      {
+        questions.length === 0
+          && 
+            <div className="empty-questions">
+              <img src={emptyQuestionsImg} alt="" />
+              <strong>
+                Nenhuma pergunta por aqui...
+              </strong>
+              <p>
+                Faça seu login e seja a primeira pessoa a fazer uma pergunta!
+              </p>
+            </div>
+      }
+
       { 
         questions.map(question => (
           <Question
