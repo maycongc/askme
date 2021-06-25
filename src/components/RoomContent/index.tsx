@@ -1,19 +1,19 @@
 import { FormEvent, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { Button } from '../components/Button';
-import { UserInfo } from '../components/UserInfo';
-import { Question } from '../components/Question';
+import { Button } from '../../components/Button';
+import { UserInfo } from '../../components/UserInfo';
+import { Question } from '../../components/Question';
 
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
-import emptyQuestionsImg from '../assets/images/empty-questions.svg'
+import emptyQuestionsImg from '../../assets/images/empty-questions.svg'
 
-import { QuestionProps } from '../pages/Room'
+import { QuestionProps } from '../../pages/Room'
 
-import '../styles/room-content.scss';
+import './styles.scss';
 
 type RoomContentProps = {
   code: string;

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import closeRoomIcon from '../assets/images/modal-close.svg'
-import deleteQuestionIcon from '../assets/images/modal-delete.svg'
+import closeRoomIcon from '../../assets/images/modal-close.svg'
+import deleteQuestionIcon from '../../assets/images/modal-delete.svg'
 
-import { useModal } from '../hooks/useModal'
+import { useModal } from '../../hooks/useModal'
 
-import '../styles/dangerous-action-modal.scss';
+import './styles.scss';
 
 type DangerousActionModalProps = {
   type: string;

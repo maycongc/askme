@@ -1,5 +1,6 @@
-import { useAuth } from "../hooks/useAuth";
-import '../styles/user-bar.scss';
+import { useAuth } from "../../hooks/useAuth";
+
+import './styles.scss';
 
 export function UserInfo() {
 

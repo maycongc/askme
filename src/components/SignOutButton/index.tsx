@@ -1,9 +1,10 @@
 import { useHistory } from 'react-router-dom'
 
-import loginIcon from '../assets/images/logout.svg';
-import { useAuth } from '../hooks/useAuth';
+import loginIcon from '../../assets/images/logout.svg';
 
-import '../styles/button.scss';
+import { useAuth } from '../../hooks/useAuth';
+
+import './styles.scss';
 
 export function SignOutButton() {
 

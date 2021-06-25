@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
-import logoImg from '../assets/images/logo.svg';
-import copyImg from '../assets/images/copy.svg';
+import logoImg from '../../assets/images/logo.svg';
+import copyImg from '../../assets/images/copy.svg';
 
-import { UserInfo } from '../components/UserInfo';
+import { UserInfo } from '../../components/UserInfo';
 
-import { useModal } from '../hooks/useModal';
-import { useAuth } from '../hooks/useAuth';
+import { useModal } from '../../hooks/useModal';
+import { useAuth } from '../../hooks/useAuth';
 
-import '../styles/header.scss';
+import './styles.scss';
 
 type HeaderProps = {
   code: string,

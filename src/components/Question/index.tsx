@@ -1,11 +1,11 @@
-import answerIcon from '../assets/images/answer.svg';
-import checkIcon from '../assets/images/check.svg';
-import deleteIcon from '../assets/images/delete.svg';
-import likeIcon from '../assets/images/like.svg';
+import answerIcon from '../../assets/images/answer.svg';
+import checkIcon from '../../assets/images/check.svg';
+import deleteIcon from '../../assets/images/delete.svg';
+import likeIcon from '../../assets/images/like.svg';
 
-import { useModal } from '../hooks/useModal';
+import { useModal } from '../../hooks/useModal';
 
-import '../styles/question.scss';
+import './styles.scss';
 
 type QuestionProps = {
   content: string;

@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { RoomHeader } from '../components/RoomHeader'
-import { RoomContent } from '../components/RoomContent'
-import { DangerousActionModal } from '../components/DangerousActionModal';
+import { RoomHeader } from '../../components/RoomHeader'
+import { RoomContent } from '../../components/RoomContent'
+import { DangerousActionModal } from '../../components/DangerousActionModal';
 
-import { database } from '../services/firebase'
+import { database } from '../../services/firebase'
 
-import { useModal } from '../hooks/useModal'
-import { useAuth } from '../hooks/useAuth'
+import { useModal } from '../../hooks/useModal'
+import { useAuth } from '../../hooks/useAuth'
 
 type RoomParams = {
    id: string,
