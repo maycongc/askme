@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Header } from '../components/Header'
+import { Header } from '../components/RoomHeader'
 import { RoomContent } from '../components/RoomContent'
 import { DangerousActionModal } from '../components/DangerousActionModal';
 
