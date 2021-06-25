@@ -1,14 +1,14 @@
-import { useState } from 'react';
-
 import answerIcon from '../../assets/images/answer.svg';
 import checkIcon from '../../assets/images/check.svg';
 import deleteIcon from '../../assets/images/delete.svg';
 import likeIcon from '../../assets/images/like.svg';
 
 import { useModal } from '../../hooks/useModal';
+
+import { toastError } from '../../services/toast';
 import { database } from '../../services/firebase';
 
-import { QuestionProps } from '../../pages/Room'
+import { QuestionProps } from '../../pages/Room';
 
 import './styles.scss';
 
@@ -22,7 +22,7 @@ export function Question(props: QuestionProps & {
     author,
     roomAuthorId,
     roomId,
-    id,
+    id: questionId,
     isAnswered,
     isHighlighted,
     userId,
@@ -30,14 +30,11 @@ export function Question(props: QuestionProps & {
     likeCount,
   } = props;
 
-  const { isHidden, setIsHidden, setType } = useModal();
+  const { setIsHidden, setInfo } = useModal();
 
-  function handleDeleteButton() {
-    setType('question');
-    setIsHidden(!isHidden);
-  }
+  async function handleLikeButton() {
+    if(userId === undefined) return toastError('Error. User needs to be authenticated!');
 
-  async function handleLikeButton(questionId: string, likeId: string | undefined) {
     if(likeId) {
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
     } else {
@@ -47,8 +44,42 @@ export function Question(props: QuestionProps & {
     }
   }
 
+  async function handleHighlightButton() {
+    if(!isHighlighted) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isHighlighted: true,
+        isAnswered: false,
+      });
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isHighlighted: false,
+      });
+    }
+  }
+
+  async function handleAnswerButton() {
+    if(!isAnswered) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isAnswered: true,
+        isHighlighted: false,
+      });
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isAnswered: false,
+      });
+    }
+  }
+
+  function handleDeleteButton() {
+    setInfo({
+      type: 'question',
+      ref: `rooms/${roomId}/questions/${questionId}`,
+    });
+    setIsHidden(false);
+  }
+
   return (
-    <article>
+    <article className={`${(isHighlighted && 'highlighted') || (isAnswered && 'answered')}`}>
       <p>{content}</p>
 
       <div className="question-footer">
@@ -62,12 +93,12 @@ export function Question(props: QuestionProps & {
             userId === roomAuthorId
             ?
               <div>
-                <button>
-                  <img className="check" src={checkIcon} alt="Ícone de respondido" />
+                <button onClick={handleAnswerButton}>
+                  <img className={`check ${isAnswered && 'answered'}`} src={checkIcon} alt="Ícone de respondido" />
                 </button>
 
-                <button>
-                  <img className="answer" src={answerIcon} alt="Ícone de destacar" />
+                <button onClick={handleHighlightButton}>
+                  <img className={`answer ${isHighlighted && 'highlighted'}`} src={answerIcon} alt="Ícone de destacar" />
                 </button>
                 
                 <button onClick={handleDeleteButton}>
@@ -79,7 +110,7 @@ export function Question(props: QuestionProps & {
               <div className="like-content">
                 <span>{likeCount > 0 && likeCount}</span>
 
-                <button onClick={() => handleLikeButton(id, likeId)}>
+                <button onClick={() => handleLikeButton()}>
                   <img className={`like ${likeId && 'liked'}`} src={likeIcon} alt="Ícone de deletar" />
                 </button>
               </div>

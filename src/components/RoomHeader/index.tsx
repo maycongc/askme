@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import logoImg from '../../assets/images/logo.svg';
 import copyImg from '../../assets/images/copy.svg';
 
 import { UserInfo } from '../../components/UserInfo';
+import { SignOutButton } from '../../components/SignOutButton';
 
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../hooks/useAuth';
+
+import { toastSuccess } from '../../services/toast';
 
 import './styles.scss';
 
@@ -18,27 +21,21 @@ type HeaderProps = {
 
 export function RoomHeader(props: HeaderProps) {
   const { user } = useAuth();
-  const { isHidden, setIsHidden, setType } = useModal();
+  const { isHidden, setIsHidden, setInfo } = useModal();
   const { authorId, code: roomId } = props;
 
   function copyToClipboard() {
     navigator.clipboard.writeText(roomId);
 
-    toast('Successfully copied to clipboard.', {
-      icon: '✔️',
-      duration: 3000,
-      style: {
-        border: '1px solid #5ac92a',
-        color: '#5ac92a',
-        font: "500 15px 'Roboto', sans-serif",
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.35)'
-      }
-    })
+    toastSuccess('Successfully copied to clipboard.');
   }
 
   function handleCloseRoom() {
-    setType('room')
-    setIsHidden(!isHidden)
+    setInfo({
+      type: 'room',
+      ref: `rooms/${roomId}`
+    });
+    setIsHidden(!isHidden);
   }
 
   return (
@@ -69,6 +66,10 @@ export function RoomHeader(props: HeaderProps) {
                 <button onClick={handleCloseRoom} className="close-room-button">
                   Encerrar sala
                 </button>
+          }
+
+          {
+            user?.id && <SignOutButton />
           }
         </div>
       </header>

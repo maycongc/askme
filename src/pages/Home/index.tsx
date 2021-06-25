@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import logoImg from '../../assets/images/logo.svg';
 import googleImg from '../../assets/images/google-logo.svg';
@@ -11,6 +12,7 @@ import { Aside } from '../../components/Aside';
 import { useAuth } from '../../hooks/useAuth';
 
 import { database } from '../../services/firebase';
+import { toastError } from '../../services/toast';
 
 import '../../styles/global.scss';
 import './styles.scss';
@@ -37,8 +39,7 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if(!roomRef.exists()){
-      alert('Error. Room does not exists.')
-      return;
+      return toastError('Error. Room does not exists.')
     }
 
     history.push(`/rooms/${roomCode}`)
@@ -46,6 +47,7 @@ export function Home() {
 
   return (
     <div id="page-auth">
+      <Toaster />
       <Aside />
 
       <main>

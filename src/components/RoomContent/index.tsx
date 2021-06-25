@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import { Button } from '../../components/Button';
 import { UserInfo } from '../../components/UserInfo';
@@ -8,10 +8,11 @@ import { Question } from '../../components/Question';
 import { useAuth } from '../../hooks/useAuth';
 
 import { database } from '../../services/firebase';
+import { toastError, toastSuccess } from '../../services/toast';
 
-import emptyQuestionsImg from '../../assets/images/empty-questions.svg'
+import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
-import { QuestionProps } from '../../pages/Room'
+import { QuestionProps } from '../../pages/Room';
 
 import './styles.scss';
 
@@ -33,15 +34,7 @@ export function RoomContent(props: RoomContentProps) {
 
     if(question.trim() === '') return;
 
-    if(!user) return toast.error('Error! User need to be authenticated.', {
-      duration: 3000,
-      style: {
-        border: '1px solid #eb3636',
-        color: '#c92a2a',
-        font: "500 15px 'Roboto', sans-serif",
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.35)'
-      }
-    })
+    if(!user) return toastError('Error. User needs to be authenticated.');
 
     const newQuestion = {
       content: question,
@@ -55,15 +48,7 @@ export function RoomContent(props: RoomContentProps) {
 
     await database.ref(`rooms/${roomId}/questions`).push(newQuestion);
 
-    toast.success('Question sent successfully.', {
-      duration: 3000,
-      style: {
-        border: '1px solid #5ac92a',
-        color: '#5ac92a',
-        font: "500 15px 'Roboto', sans-serif",
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.35)'
-      }
-    })
+    toastSuccess('Question sent successfully.');
 
     setQuestion('');
   }
@@ -132,13 +117,19 @@ export function RoomContent(props: RoomContentProps) {
         questions.map(question => (
           <Question
             key={question.id}
+            id={question.id}
             content={question.content}
-            user={{ 
-              id: user?.id,
+            author={{ 
               avatar: question.author.avatar,
               name: question.author.name 
             }}
+            isAnswered={question.isAnswered}
+            isHighlighted={question.isHighlighted}
+            likeId={question.likeId}
+            likeCount={question.likeCount}
             roomAuthorId={authorId}
+            roomId={roomId}
+            userId={user?.id}
           />
         )) 
       }

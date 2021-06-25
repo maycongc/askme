@@ -19,16 +19,12 @@ type ModalProps = {
 
 export function DangerousActionModal({ buttonConfirm }: ModalProps) {
 
-  const {
-    isHidden,
-    setIsHidden,
-    type,
-  } = useModal();
+  const { isHidden, setIsHidden, info, } = useModal();
 
   const [modalInfo, setModalInfo] = useState<ModalInfoProps>();
 
   useEffect(() => {
-    switch (type) {
+    switch (info.type) {
       case 'room':
         setModalInfo({
           title: 'Encerrar sala',
@@ -46,7 +42,7 @@ export function DangerousActionModal({ buttonConfirm }: ModalProps) {
       default:
         break;
     }
-  }, [type])
+  }, [info.type])
 
   function handleCancelButton() {
     setIsHidden(true);
@@ -64,7 +60,7 @@ export function DangerousActionModal({ buttonConfirm }: ModalProps) {
   return (
     <div className="modal-body" style={isHidden ? hide : show}>
       <div className="modal-content">
-        <img src={type === 'room' ? closeRoomIcon : deleteQuestionIcon} alt="Imagem de perigo" />
+        <img src={info.type === 'room' ? closeRoomIcon : deleteQuestionIcon} alt="Imagem de perigo" />
         <h1>{modalInfo?.title}</h1>
         <p>{modalInfo?.description}</p>
         <div className="modal-buttons">

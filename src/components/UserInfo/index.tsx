@@ -7,7 +7,7 @@ export function UserInfo() {
   const { user } = useAuth();
 
   return (
-    <div className="user-info-bar">
+    <div className="user-info">
       <strong>{user?.name}</strong>
       <img src={user?.avatar} alt="" />
     </div>

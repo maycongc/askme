@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 import loginIcon from '../../assets/images/logout.svg';
 
@@ -8,20 +8,20 @@ import './styles.scss';
 
 export function SignOutButton() {
 
-  const history = useHistory();
+  // const history = useHistory();
   const { user, setUser ,signOut } = useAuth();
 
   async function handleSignOut() {
     if(user)
       await signOut();
     setUser(undefined);
-    history.push('/');
+    // history.push('/');
   }
 
   return (
     <button onClick={handleSignOut} className="signOut">
       <img src={loginIcon} alt="Logout ícone" />
-      Sair
+      Deslogar
     </button>
   );
 }

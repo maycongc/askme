@@ -1,9 +1,9 @@
-.user-info-bar {
+.user-info {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
-  width: 230px;
+  width: fit-content;
 
   strong {
     font: 700 17px 'Poppins', sans-serif;
