@@ -6,7 +6,7 @@ import googleImg from '../assets/images/google-logo.svg';
 import loginImg from '../assets/images/login.svg';
 
 import { Button } from '../components/Button';
-import { HomeAside } from '../components/HomeAside';
+import { Aside } from '../components/Aside';
 
 import { useAuth } from '../hooks/useAuth';
 
@@ -46,7 +46,7 @@ export function Home() {
 
   return (
     <div id="page-auth">
-      <HomeAside />
+      <Aside />
 
       <main>
         <div className="main-content">

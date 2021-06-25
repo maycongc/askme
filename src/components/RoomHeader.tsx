@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import logoImg from '../assets/images/logo.svg';
 import copyImg from '../assets/images/copy.svg';
 
-import { UserInfoBar } from '../components/UserInfoBar';
+import { UserInfo } from '../components/UserInfo';
 
 import { useModal } from '../hooks/useModal';
 import { useAuth } from '../hooks/useAuth';
@@ -52,7 +52,7 @@ export function Header(props: HeaderProps) {
 
         <div className="buttons">
           <Toaster />
-          {user && <UserInfoBar />}
+          {user && <UserInfo />}
 
           <button onClick={copyToClipboard} className="room-button">
             <div>

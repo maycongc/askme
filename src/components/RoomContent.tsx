@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Button } from '../components/Button';
-import { UserInfoBar } from '../components/UserInfoBar';
+import { UserInfo } from '../components/UserInfo';
 import { Question } from '../components/Question';
 
 import { useAuth } from '../hooks/useAuth';
@@ -104,7 +104,7 @@ export function RoomContent(props: RoomContentProps) {
                       Para enviar uma pergunta
                       , <button onClick={handleLogin}>faça seu login.</button>
                     </span>
-                  : <UserInfoBar />
+                  : <UserInfo />
                 }
       
                 <Button type="submit" disabled={!user}>

@@ -1,6 +1,6 @@
 import illustrationImg from '../assets/images/illustration.svg';
 
-export function HomeAside(){
+export function Aside(){
   return (
     <aside>
       <div>

@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 import '../styles/user-bar.scss';
 
-export function UserInfoBar() {
+export function UserInfo() {
 
   const { user } = useAuth();
 

@@ -4,9 +4,9 @@ import { FormEvent, useState } from 'react';
 import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
-import { HomeAside } from '../components/HomeAside';
+import { Aside } from '../components/Aside';
 import { SignOutButton } from '../components/SignOutButton'
-import { UserInfoBar } from '../components/UserInfoBar'
+import { UserInfo } from '../components/UserInfo'
 
 import { useAuth } from '../hooks/useAuth';
 
@@ -37,11 +37,11 @@ export function NewRoom() {
 
   return (
     <div id="page-auth">
-      <HomeAside />
+      <Aside />
 
       <main>
         <div className="header">
-          <UserInfoBar />
+          <UserInfo />
           <SignOutButton />
         </div>
 
