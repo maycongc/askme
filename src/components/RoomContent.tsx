@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Button } from '../components/Button';
@@ -11,67 +11,28 @@ import { database } from '../services/firebase';
 
 import emptyQuestionsImg from '../assets/images/empty-questions.svg'
 
+import { QuestionProps } from '../pages/Room'
+
 import '../styles/room-content.scss';
 
 type RoomContentProps = {
   code: string;
   authorId: string;
   title: string
-}
-
-type FirebaseQuestionsProps = Record<string, {
-  author: {
-    name: string;
-    avatar: string;
-  }
-  content: string;
-  isHighlighted: boolean;
-  isAnswered: boolean;
-}>
-
-type QuestionProps = {
-  id: string;
-  author: {
-    name: string;
-    avatar: string;
-  }
-  content: string;
-  isHighlighted: boolean;
-  isAnswered: boolean;
+  questions: Array<QuestionProps>;
 }
 
 export function RoomContent(props: RoomContentProps) {
-  const { user } = useAuth();
-  const { code: roomId, authorId, title } = props;
+  const { user, signInWithGoogle } = useAuth();
+  const { code: roomId, authorId, title, questions } = props;
 
   const [question, setQuestion] = useState('');
-  const [questions, setQuestions] = useState<Array<QuestionProps>>([]);
-
-  useEffect(() => {
-    const roomRef = database.ref(`rooms/${roomId}`);
-
-    roomRef.on('value', room => {
-      const databaseRoom = room.val();
-      const firebaseQuestions: FirebaseQuestionsProps = databaseRoom.questions ?? {};
-
-      const parsedQuestions = Object.entries(firebaseQuestions).map(([ key, value ]) => {
-        return {
-          id: key,
-          content: value.content,
-          author: value.author,
-          isHighlighted: value.isHighlighted,
-          isAnswered: value.isAnswered,
-        }
-      });
-
-      setQuestions(parsedQuestions);
-    })
-  }, [roomId]);
 
   async function handleNewQuestion(event: FormEvent) {
     event.preventDefault();
 
     if(question.trim() === '') return;
+
     if(!user) return toast.error('Error! User need to be authenticated.', {
       duration: 3000,
       style: {
@@ -107,6 +68,11 @@ export function RoomContent(props: RoomContentProps) {
     setQuestion('');
   }
 
+  async function handleLogin() {
+    if(!user)
+      await signInWithGoogle();
+  }
+
   return (
     <main>
       <Toaster />
@@ -134,7 +100,10 @@ export function RoomContent(props: RoomContentProps) {
               <div className="form-footer">
                 {
                 !user
-                  ? <span>Para enviar uma pergunta, <button>faça seu login.</button></span>
+                  ? <span>
+                      Para enviar uma pergunta
+                      , <button onClick={handleLogin}>faça seu login.</button>
+                    </span>
                   : <UserInfoBar />
                 }
       

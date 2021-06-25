@@ -20,6 +20,27 @@ type RoomInfoProps = {
   title: string;
 }
 
+type FirebaseQuestionsProps = Record<string, {
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isHighlighted: boolean;
+  isAnswered: boolean;
+}>
+
+export type QuestionProps = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isHighlighted: boolean;
+  isAnswered: boolean;
+}
+
 export function Room(){
   const params = useParams<RoomParams>();
   const roomId = params.id;
@@ -27,20 +48,33 @@ export function Room(){
   const { type } = useModal();
   const { user } = useAuth();
 
+  const [questions, setQuestions] = useState<Array<QuestionProps>>([]);
   const [roomInfo, setRoomInfo] = useState<RoomInfoProps>({ authorId: '', title: '' });
 
   useEffect(() => {
-    database.ref(`rooms/${roomId}`).once('value', room => {
-      const firebaseRoom = room.val();
+    const roomRef = database.ref(`rooms/${roomId}`);
 
-      const values = {
-        authorId: firebaseRoom.authorId,
-        title: firebaseRoom.title,
-      }
-  
-      setRoomInfo(values)
+    roomRef.on('value', room => {
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestionsProps = databaseRoom.questions ?? {};
+
+      const parsedQuestions = Object.entries(firebaseQuestions).map(([ key, value ]) => {
+        return {
+          id: key,
+          content: value.content,
+          author: value.author,
+          isHighlighted: value.isHighlighted,
+          isAnswered: value.isAnswered,
+        }
+      });
+
+      setRoomInfo({
+        authorId: databaseRoom.authorId,
+        title: databaseRoom.title,
+      })
+      setQuestions(parsedQuestions);
     })
-  }, [roomId])
+  }, [roomId]);
 
   return (
     <div id="page-room">
@@ -55,7 +89,12 @@ export function Room(){
       }
       
       <Header code={roomId} authorId={roomInfo.authorId} />
-      <RoomContent code={roomId} authorId={roomInfo.authorId} title={roomInfo.title} />
+      <RoomContent
+        code={roomId}
+        authorId={roomInfo.authorId}
+        title={roomInfo.title}
+        questions={questions}
+      />
     </div>
   );
 }
