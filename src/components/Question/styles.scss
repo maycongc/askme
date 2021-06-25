@@ -83,17 +83,13 @@ article.highlighted {
   background: #f4f0ff;
   border: 1px solid $color1;
 
-  .question-footer {
-    .question-user-info {
-      span {
-        color: #000;
-      }
-    }
+  .question-footer .question-user-info span {
+    color: $text1;
   }
 }
 
 article.answered {
-  background: #dbdcdd;
+  background: $gray3;
 
   .question-footer {
     .question-user-info {
