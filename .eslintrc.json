@@ -1,48 +1,52 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "rules": {
-        "prettier/prettier": "error",
-        "import/extensions": [ "error", "ignorePackages", {
-            "ts": "never",
-            "tsx": "never"
-        }],
-        "import/prefer-default-export": "off",
-        "react/jsx-filename-extension": "off",
-        "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-unused-vars": "off",
-        "consistent-return": "off",
-        "react/jsx-props-no-spreading": "off",
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"],
-        "no-duplicate-imports": "off",
-        "import/no-duplicates": "off",
-        "@typescript-eslint/no-duplicate-imports": ["error"]
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/extensions": [ "error", "ignorePackages", {
+      "ts": "never",
+      "tsx": "never"
+      }],
+      "import/prefer-default-export": "off",
+      "react/jsx-filename-extension": "off",
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "consistent-return": "off",
+      "react/jsx-props-no-spreading": "off",
+
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"],
+
+      "no-duplicate-imports": "off",
+      "import/no-duplicates": "off",
+      "@typescript-eslint/no-duplicate-imports": ["error"]
     },
     "settings": {
-        "import/resolver": {
-            "typescript": {}
-        }
+      "import/resolver": {
+        "typescript": {}
+      }
     }
-}
+  }
+  

@@ -1,10 +1,6 @@
 @import '../../styles/variables';
 
-.content {
-  display: flex;
-}
-
-header {
+.room-header {
   width: 100vw;
   height: 89px;
 
@@ -17,7 +13,7 @@ header {
 
   padding: 20px 120px;
 
-  img {
+  .room-logo {
     display: flex;
 
     width: 100px;
@@ -27,82 +23,66 @@ header {
   .buttons {
     display: flex;
     align-items: center;
-
-    height: 40px;
     width: fit-content;
 
     gap: 10px;
-  }
 
-  button {
-    height: 40px;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-
-    font: 500 14px 'Roboto', sans-serif;
-
-    cursor: pointer;
-  }
-
-  .room-button {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid $color1;
-    background-color: $color1;
-
-    transition: all 0.3s ease;
-
-    &:hover {
-      span {
-        background: $color1;
-        color: #fff;
-      }
+    button:nth-child(-n + 2) {
+      height: 40px;
+      border-radius: 8px;
+      font: 500 14px 'Roboto', sans-serif;
+      cursor: pointer;
     }
 
-    div {
+    .room-button {
+      width: fit-content;
+      overflow: hidden;
+
+      cursor: pointer;
+
       display: flex;
       align-items: center;
-      justify-content: center;
-      height: 100%;
+      justify-content: space-between;
 
-      padding: 0 8px;
-
-      img {
-        display: flex;
-        width: 21px;
-      }
-    }
-    
-    span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      background: #fff;
-
-      padding: 0 7px;
-
+      border: 1px solid $color1;
+      background-color: $color1;
+  
       transition: all 0.3s ease;
-    }
-  }
-
-  .close-room-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 131px;
-    color: $color4;
-    border: 1px solid $color4;
-
-    transition: all 0.3s ease;
-
-    &:hover {
-      filter: brightness(0.95);
-      background: $color4;
-      color: #fff;
+  
+      &:hover {
+        span {
+          background: $color1;
+          color: #fff;
+        }
+      }
+  
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        height: 100%;
+        background-color: $color1;
+  
+        padding: 0 8px;
+  
+        img {
+          display: flex;
+          width: 21px;
+        }
+      }
+      
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: #fff;
+  
+        padding: 0 7px;
+  
+        transition: all 0.3s ease;
+      }
     }
   }
 }

@@ -53,12 +53,12 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
     setQuestion('');
   }
 
-  async function handleLogin() {
-    if (!user) await signInWithGoogle();
+  async function handleLogin(signInType: string) {
+    if (!user) await signInWithGoogle(signInType);
   }
 
   return (
-    <main>
+    <main className="room-main">
       <Toaster />
 
       <div className="room-title">
@@ -82,7 +82,7 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
             {!user ? (
               <span>
                 Para enviar uma pergunta,{' '}
-                <button type="button" onClick={handleLogin}>
+                <button type="button" onClick={() => handleLogin('google')}>
                   faça seu login.
                 </button>
               </span>

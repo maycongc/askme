@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import logoImg from '../../assets/images/logo.svg';
 import copyImg from '../../assets/images/copy.svg';
 
-import { UserInfo } from '../UserInfo';
+import { Button } from '../Button';
 import { SignOutButton } from '../SignOutButton';
 
 import { useModal } from '../../hooks/useModal';
@@ -39,42 +39,30 @@ export function RoomHeader(props: HeaderProps): JSX.Element {
   }
 
   return (
-    <div className="content">
-      <header>
-        <div className="logo">
-          <Link to="/">
-            <img src={logoImg} alt="Imagem da logo" />
-          </Link>
-        </div>
+    <>
+      <Toaster />
+      <header className="room-header">
+        <Link to="/">
+          <img src={logoImg} className="room-logo" alt="Imagem da logo" />
+        </Link>
 
         <div className="buttons">
-          <Toaster />
-          {user && <UserInfo />}
-
-          <button
-            type="button"
-            onClick={copyToClipboard}
-            className="room-button"
-          >
+          <Button onClick={copyToClipboard} className="room-button">
             <div>
               <img src={copyImg} alt="Ícone de copiar" />
             </div>
             <span>Sala #{roomId}</span>
-          </button>
+          </Button>
 
           {user?.id === authorId && (
-            <button
-              type="button"
-              onClick={handleCloseRoom}
-              className="close-room-button"
-            >
+            <Button onClick={handleCloseRoom} className="close-room">
               Encerrar sala
-            </button>
+            </Button>
           )}
 
-          {user?.id && <SignOutButton />}
+          {user && <SignOutButton />}
         </div>
       </header>
-    </div>
+    </>
   );
 }

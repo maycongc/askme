@@ -1,0 +1,34 @@
+@import "../../styles//variables";
+
+.main-content {
+
+  button + button {
+    margin-top: 8px;
+  }
+
+  .separator {
+    width: 100%;
+    font-size: 14px;
+    color: $gray1;
+
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $gray1;
+      margin-right: 16px;
+    }
+
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $gray1;
+      margin-left: 16px;
+    }
+  }
+}

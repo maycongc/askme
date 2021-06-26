@@ -1,82 +1,44 @@
-import { FormEvent, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-
-import logoImg from '../../assets/images/logo.svg';
-import googleImg from '../../assets/images/google-logo.svg';
-import loginImg from '../../assets/images/login.svg';
-
-import { Button } from '../../components/Button';
+import { UserInfo } from '../../components/UserInfo';
+import { SignOutButton } from '../../components/SignOutButton';
 import { Aside } from '../../components/Aside';
+import { HomeContent } from '../../components/HomeContent';
+import { HomeCreateRoom } from '../../components/HomeCreateRoom';
+import { Button } from '../../components/Button';
+
+import leftArrowIcon from '../../assets/images/arrow-back.svg';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useHome } from '../../hooks/useHome';
 
-import { database } from '../../services/firebase';
-import { toastError } from '../../services/toast';
-
-import '../../styles/global.scss';
 import './styles.scss';
 
 export function Home(): JSX.Element {
-  const { user, signInWithGoogle } = useAuth();
-  const [roomCode, setRoomCode] = useState('');
+  const { user } = useAuth();
+  const { isHomePage, setIsHomePage } = useHome();
 
-  const history = useHistory();
-
-  async function handleCreateRoom() {
-    if (!user) await signInWithGoogle();
-
-    history.push('/rooms/new');
-  }
-
-  async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault();
-
-    if (roomCode.trim() === '') return;
-
-    const roomRef = await database.ref(`rooms/${roomCode}`).get();
-
-    if (!roomRef.exists()) {
-      return toastError('Error. Room does not exists.');
-    }
-
-    history.push(`/rooms/${roomCode}`);
+  function handleBackButton() {
+    setIsHomePage(true);
   }
 
   return (
-    <div id="page-auth">
-      <Toaster />
+    <div id="page-home">
       <Aside />
 
-      <main>
-        <div className="main-content">
-          <img src={logoImg} alt="Logo LetMeAsk" />
-
-          <button
-            type="button"
-            onClick={handleCreateRoom}
-            className="create-room"
-          >
-            <img src={googleImg} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
-
-          <div className="separator">Ou entre em uma sala</div>
-
-          <form onSubmit={handleJoinRoom}>
-            <input
-              type="text"
-              placeholder="Digite o código da sala"
-              onChange={event => setRoomCode(event.target.value)}
-              value={roomCode}
-            />
-
-            <Button type="submit">
-              <img src={loginImg} alt="Log-in ícone" />
-              Entrar na sala
+      <main className="home-main">
+        <header className={`home-header ${!isHomePage && 'gap'}`}>
+          {!isHomePage && (
+            <Button onClick={handleBackButton} className="button back-button">
+              <img src={leftArrowIcon} alt="" />
+              Voltar
             </Button>
-          </form>
-        </div>
+          )}
+          <div>
+            <UserInfo />
+            {user && <SignOutButton />}
+          </div>
+        </header>
+
+        {isHomePage ? <HomeContent /> : <HomeCreateRoom />}
       </main>
     </div>
   );

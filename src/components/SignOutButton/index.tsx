@@ -1,27 +1,28 @@
-// import { useHistory } from 'react-router-dom'
+import { Button } from '../Button';
 
 import loginIcon from '../../assets/images/logout.svg';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useHome } from '../../hooks/useHome';
 
 import './styles.scss';
 
 export function SignOutButton(): JSX.Element {
-  // const history = useHistory();
   const { user, setUser, signOut } = useAuth();
+  const { setIsHomePage } = useHome();
 
   async function handleSignOut() {
     if (user) {
       await signOut();
+      setUser(undefined);
+      setIsHomePage(true);
     }
-    setUser(undefined);
-    // history.push('/');
   }
 
   return (
-    <button type="button" onClick={handleSignOut} className="signOut">
+    <Button onClick={handleSignOut} className="signOut">
       <img src={loginIcon} alt="Logout ícone" />
       Deslogar
-    </button>
+    </Button>
   );
 }

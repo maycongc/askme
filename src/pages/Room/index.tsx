@@ -11,6 +11,8 @@ import { toastError } from '../../services/toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useModal } from '../../hooks/useModal';
 
+import './styles.scss';
+
 type RoomParams = {
   id: string;
 };

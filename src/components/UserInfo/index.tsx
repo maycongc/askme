@@ -7,8 +7,11 @@ export function UserInfo(): JSX.Element {
 
   return (
     <div className="user-info">
-      <strong>{user?.name}</strong>
-      <img src={user?.avatar} alt="" />
+      <strong>{!user ? 'Visitante' : user.name}</strong>
+      <img
+        src={!user ? 'https://i.imgur.com/9BibObN.png' : user.avatar}
+        alt="foto do usuário"
+      />
     </div>
   );
 }

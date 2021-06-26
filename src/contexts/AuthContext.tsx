@@ -18,7 +18,7 @@ type UserType = {
 export type AuthContextType = {
   user: UserType | undefined;
   setUser: Dispatch<SetStateAction<UserType | undefined>>;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: (signInType: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -55,8 +55,25 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
     };
   }, []);
 
-  async function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  async function signInWithGoogle(signInType: string) {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const githubProvider = new firebase.auth.GithubAuthProvider();
+    const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+    let provider;
+
+    switch (signInType) {
+      case 'facebook':
+        provider = facebookProvider;
+        break;
+
+      case 'github':
+        provider = githubProvider;
+        break;
+
+      default:
+        provider = googleProvider;
+    }
 
     const result = await auth.signInWithPopup(provider);
 
@@ -65,7 +82,7 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
 
       if (!displayName || !photoURL)
         throw new Error(
-          `The user's Google account is missing the required information`,
+          `The user's account is missing the required information`,
         );
 
       setUser({

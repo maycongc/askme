@@ -1,5 +1,7 @@
 import illustrationImg from '../../assets/images/illustration.svg';
 
+import './styles.scss';
+
 export function Aside(): JSX.Element {
   return (
     <aside>
