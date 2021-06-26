@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Home } from "./pages/Home";
-import { NewRoom } from "./pages/NewRoom";
-import { Room } from "./pages/Room";
+import { Home } from './pages/Home';
+import { NewRoom } from './pages/NewRoom';
+import { Room } from './pages/Room';
 
 import { AuthContextProvider } from './contexts/AuthContext';
 import { ModalContextProvider } from './contexts/ModalContext';
 
-function App() {
+function App(): JSX.Element {
   return (
     <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE}>
       <AuthContextProvider>

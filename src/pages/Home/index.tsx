@@ -17,16 +17,14 @@ import { toastError } from '../../services/toast';
 import '../../styles/global.scss';
 import './styles.scss';
 
-export function Home() {
-
+export function Home(): JSX.Element {
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState('');
 
   const history = useHistory();
 
   async function handleCreateRoom() {
-    if (!user)
-      await signInWithGoogle()
+    if (!user) await signInWithGoogle();
 
     history.push('/rooms/new');
   }
@@ -34,15 +32,15 @@ export function Home() {
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault();
 
-    if(roomCode.trim() === '') return;
+    if (roomCode.trim() === '') return;
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
-    if(!roomRef.exists()){
-      return toastError('Error. Room does not exists.')
+    if (!roomRef.exists()) {
+      return toastError('Error. Room does not exists.');
     }
 
-    history.push(`/rooms/${roomCode}`)
+    history.push(`/rooms/${roomCode}`);
   }
 
   return (
@@ -54,7 +52,11 @@ export function Home() {
         <div className="main-content">
           <img src={logoImg} alt="Logo LetMeAsk" />
 
-          <button onClick={handleCreateRoom} className="create-room">
+          <button
+            type="button"
+            onClick={handleCreateRoom}
+            className="create-room"
+          >
             <img src={googleImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
@@ -62,13 +64,13 @@ export function Home() {
           <div className="separator">Ou entre em uma sala</div>
 
           <form onSubmit={handleJoinRoom}>
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Digite o código da sala"
               onChange={event => setRoomCode(event.target.value)}
               value={roomCode}
             />
-            
+
             <Button type="submit">
               <img src={loginImg} alt="Log-in ícone" />
               Entrar na sala

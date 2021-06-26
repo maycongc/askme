@@ -6,20 +6,20 @@ import { useAuth } from '../../hooks/useAuth';
 
 import './styles.scss';
 
-export function SignOutButton() {
-
+export function SignOutButton(): JSX.Element {
   // const history = useHistory();
-  const { user, setUser ,signOut } = useAuth();
+  const { user, setUser, signOut } = useAuth();
 
   async function handleSignOut() {
-    if(user)
+    if (user) {
       await signOut();
+    }
     setUser(undefined);
     // history.push('/');
   }
 
   return (
-    <button onClick={handleSignOut} className="signOut">
+    <button type="button" onClick={handleSignOut} className="signOut">
       <img src={loginIcon} alt="Logout ícone" />
       Deslogar
     </button>

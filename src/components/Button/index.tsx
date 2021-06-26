@@ -1,11 +1,9 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes } from 'react';
 
-import './styles.scss'
+import './styles.scss';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button(props: ButtonProps) {
-  return (
-    <button className="button" {...props} />
-  );
+export function Button(props: ButtonProps): JSX.Element {
+  return <button type="button" className="button" {...props} />;
 }

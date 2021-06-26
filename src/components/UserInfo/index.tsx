@@ -1,9 +1,8 @@
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from '../../hooks/useAuth';
 
 import './styles.scss';
 
-export function UserInfo() {
-
+export function UserInfo(): JSX.Element {
   const { user } = useAuth();
 
   return (

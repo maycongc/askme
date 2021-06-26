@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-import { Button } from '../../components/Button';
-import { UserInfo } from '../../components/UserInfo';
-import { Question } from '../../components/Question';
+import { Button } from '../Button';
+import { UserInfo } from '../UserInfo';
+import { Question } from '../Question';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -19,11 +19,11 @@ import './styles.scss';
 type RoomContentProps = {
   code: string;
   authorId: string;
-  title: string
+  title: string;
   questions: Array<QuestionProps>;
-}
+};
 
-export function RoomContent(props: RoomContentProps) {
+export function RoomContent(props: RoomContentProps): JSX.Element {
   const { user, signInWithGoogle } = useAuth();
   const { code: roomId, authorId, title, questions } = props;
 
@@ -32,9 +32,9 @@ export function RoomContent(props: RoomContentProps) {
   async function handleNewQuestion(event: FormEvent) {
     event.preventDefault();
 
-    if(question.trim() === '') return;
+    if (question.trim() === '') return;
 
-    if(!user) return toastError('Error. User needs to be authenticated.');
+    if (!user) return toastError('Error. User needs to be authenticated.');
 
     const newQuestion = {
       content: question,
@@ -44,7 +44,7 @@ export function RoomContent(props: RoomContentProps) {
       },
       isHighlighted: false,
       isAnswered: false,
-    }
+    };
 
     await database.ref(`rooms/${roomId}/questions`).push(newQuestion);
 
@@ -54,8 +54,7 @@ export function RoomContent(props: RoomContentProps) {
   }
 
   async function handleLogin() {
-    if(!user)
-      await signInWithGoogle();
+    if (!user) await signInWithGoogle();
   }
 
   return (
@@ -65,15 +64,13 @@ export function RoomContent(props: RoomContentProps) {
       <div className="room-title">
         <h1>Sala {title}</h1>
         <span>
-          { questions && questions.length > 1 ? (
-            `${questions.length} perguntas`
-          ) : (
-            `${questions.length} pergunta`
-          )}
+          {questions && questions.length > 1
+            ? `${questions.length} perguntas`
+            : `${questions.length} pergunta`}
         </span>
       </div>
 
-      { user?.id !== authorId && (
+      {user?.id !== authorId && (
         <form onSubmit={handleNewQuestion}>
           <textarea
             placeholder="O que você quer perguntar?"
@@ -82,9 +79,12 @@ export function RoomContent(props: RoomContentProps) {
           />
 
           <div className="form-footer">
-            { !user ? (
+            {!user ? (
               <span>
-                Para enviar uma pergunta, <button onClick={handleLogin}>faça seu login.</button>
+                Para enviar uma pergunta,{' '}
+                <button type="button" onClick={handleLogin}>
+                  faça seu login.
+                </button>
               </span>
             ) : (
               <UserInfo />
@@ -96,32 +96,28 @@ export function RoomContent(props: RoomContentProps) {
           </div>
         </form>
       )}
-      
-      { questions.length === 0 && (
+
+      {questions.length === 0 && (
         <div className="empty-questions">
           <img src={emptyQuestionsImg} alt="" />
-          <strong>
-            Nenhuma pergunta por aqui...
-          </strong>
-          <p>
-            Faça seu login e seja a primeira pessoa a fazer uma pergunta!
-          </p>
+          <strong>Nenhuma pergunta por aqui...</strong>
+          <p>Faça seu login e seja a primeira pessoa a fazer uma pergunta!</p>
         </div>
       )}
 
-      { questions.map(question => (
+      {questions.map(questionData => (
         <Question
-          key={question.id}
-          id={question.id}
-          content={question.content}
-          author={{ 
-            avatar: question.author.avatar,
-            name: question.author.name 
+          key={questionData.id}
+          id={questionData.id}
+          content={questionData.content}
+          author={{
+            avatar: questionData.author.avatar,
+            name: questionData.author.name,
           }}
-          isAnswered={question.isAnswered}
-          isHighlighted={question.isHighlighted}
-          likeId={question.likeId}
-          likeCount={question.likeCount}
+          isAnswered={questionData.isAnswered}
+          isHighlighted={questionData.isHighlighted}
+          likeId={questionData.likeId}
+          likeCount={questionData.likeCount}
           roomAuthorId={authorId}
           roomId={roomId}
           userId={user?.id}

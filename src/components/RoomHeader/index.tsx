@@ -4,8 +4,8 @@ import { Toaster } from 'react-hot-toast';
 import logoImg from '../../assets/images/logo.svg';
 import copyImg from '../../assets/images/copy.svg';
 
-import { UserInfo } from '../../components/UserInfo';
-import { SignOutButton } from '../../components/SignOutButton';
+import { UserInfo } from '../UserInfo';
+import { SignOutButton } from '../SignOutButton';
 
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../hooks/useAuth';
@@ -15,11 +15,11 @@ import { toastSuccess } from '../../services/toast';
 import './styles.scss';
 
 type HeaderProps = {
-  code: string,
+  code: string;
   authorId: string;
-}
+};
 
-export function RoomHeader(props: HeaderProps) {
+export function RoomHeader(props: HeaderProps): JSX.Element {
   const { user } = useAuth();
   const { isHidden, setIsHidden, setInfo } = useModal();
   const { authorId, code: roomId } = props;
@@ -33,7 +33,7 @@ export function RoomHeader(props: HeaderProps) {
   function handleCloseRoom() {
     setInfo({
       type: 'room',
-      ref: `rooms/${roomId}`
+      ref: `rooms/${roomId}`,
     });
     setIsHidden(!isHidden);
   }
@@ -42,7 +42,7 @@ export function RoomHeader(props: HeaderProps) {
     <div className="content">
       <header>
         <div className="logo">
-          <Link to={'/'}>
+          <Link to="/">
             <img src={logoImg} alt="Imagem da logo" />
           </Link>
         </div>
@@ -51,24 +51,28 @@ export function RoomHeader(props: HeaderProps) {
           <Toaster />
           {user && <UserInfo />}
 
-          <button onClick={copyToClipboard} className="room-button">
+          <button
+            type="button"
+            onClick={copyToClipboard}
+            className="room-button"
+          >
             <div>
               <img src={copyImg} alt="Ícone de copiar" />
             </div>
-            <span>
-              Sala #{roomId}
-            </span>
+            <span>Sala #{roomId}</span>
           </button>
 
-          { user?.id === authorId && (
-            <button onClick={handleCloseRoom} className="close-room-button">
+          {user?.id === authorId && (
+            <button
+              type="button"
+              onClick={handleCloseRoom}
+              className="close-room-button"
+            >
               Encerrar sala
             </button>
           )}
 
-          { user?.id && (
-            <SignOutButton />
-          )}
+          {user?.id && <SignOutButton />}
         </div>
       </header>
     </div>

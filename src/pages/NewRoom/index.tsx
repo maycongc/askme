@@ -5,8 +5,8 @@ import logoImg from '../../assets/images/logo.svg';
 
 import { Button } from '../../components/Button';
 import { Aside } from '../../components/Aside';
-import { SignOutButton } from '../../components/SignOutButton'
-import { UserInfo } from '../../components/UserInfo'
+import { SignOutButton } from '../../components/SignOutButton';
+import { UserInfo } from '../../components/UserInfo';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -14,29 +14,31 @@ import { database } from '../../services/firebase';
 
 import '../Home/styles.scss';
 
-export function NewRoom() {
+export function NewRoom(): JSX.Element {
   const { user } = useAuth();
   const [newRoom, setNewRoom] = useState('');
 
   const history = useHistory();
 
   useEffect(() => {
-    if(!user) return history.push('/');
-  }, [user, history])
+    if (!user) {
+      return history.push('/');
+    }
+  }, [user, history]);
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
 
-    if(newRoom.trim() === '') return;
+    if (newRoom.trim() === '') return;
 
-    const roomRef = database.ref('rooms')
+    const roomRef = database.ref('rooms');
 
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
-    })
+    });
 
-    history.push(`/rooms/${firebaseRoom.key}`)
+    history.push(`/rooms/${firebaseRoom.key}`);
   }
 
   return (
@@ -44,7 +46,7 @@ export function NewRoom() {
       <Aside />
 
       <main>
-        { user && (
+        {user && (
           <div className="header">
             <UserInfo />
             <SignOutButton />
@@ -62,14 +64,12 @@ export function NewRoom() {
               onChange={event => setNewRoom(event.target.value)}
               value={newRoom}
             />
-            
-            <Button type="submit">
-              Criar Sala
-            </Button>
+
+            <Button type="submit">Criar Sala</Button>
           </form>
 
           <p>
-            Quer entrar em uma sala já existente? 
+            Quer entrar em uma sala já existente?
             <Link to="/">Clique aqui</Link>
           </p>
         </div>

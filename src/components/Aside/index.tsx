@@ -1,6 +1,6 @@
 import illustrationImg from '../../assets/images/illustration.svg';
 
-export function Aside(){
+export function Aside(): JSX.Element {
   return (
     <aside>
       <div>

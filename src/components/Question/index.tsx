@@ -12,12 +12,14 @@ import { QuestionProps } from '../../pages/Room';
 
 import './styles.scss';
 
-export function Question(props: QuestionProps & {
-  userId: string | undefined;
-  roomAuthorId: string;
-  roomId: string;
-}){
-  const { 
+export function Question(
+  props: QuestionProps & {
+    userId: string | undefined;
+    roomAuthorId: string;
+    roomId: string;
+  },
+): JSX.Element {
+  const {
     content,
     author,
     roomAuthorId,
@@ -33,10 +35,13 @@ export function Question(props: QuestionProps & {
   const { setIsHidden, setInfo } = useModal();
 
   async function handleLikeButton() {
-    if(userId === undefined) return toastError('Error. User needs to be authenticated!');
+    if (userId === undefined)
+      return toastError('Error. User needs to be authenticated!');
 
-    if(likeId) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
+    if (likeId) {
+      await database
+        .ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
+        .remove();
     } else {
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
         authorId: userId,
@@ -45,7 +50,7 @@ export function Question(props: QuestionProps & {
   }
 
   async function handleHighlightButton() {
-    if(!isHighlighted) {
+    if (!isHighlighted) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
         isHighlighted: true,
         isAnswered: false,
@@ -58,7 +63,7 @@ export function Question(props: QuestionProps & {
   }
 
   async function handleAnswerButton() {
-    if(!isAnswered) {
+    if (!isAnswered) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
         isAnswered: true,
         isHighlighted: false,
@@ -79,7 +84,11 @@ export function Question(props: QuestionProps & {
   }
 
   return (
-    <article className={`${(isHighlighted && 'highlighted') || (isAnswered && 'answered')}`}>
+    <article
+      className={`${
+        (isHighlighted && 'highlighted') || (isAnswered && 'answered')
+      }`}
+    >
       <p>{content}</p>
 
       <div className="question-footer">
@@ -89,27 +98,43 @@ export function Question(props: QuestionProps & {
         </div>
 
         <div className="question-actions">
-          { userId === roomAuthorId ? (
+          {userId === roomAuthorId ? (
             <div>
-              <button onClick={handleAnswerButton}>
-                <img className={`check ${isAnswered && 'answered'}`} src={checkIcon} alt="Ícone de respondido" />
+              <button type="button" onClick={handleAnswerButton}>
+                <img
+                  className={`check ${isAnswered && 'answered'}`}
+                  src={checkIcon}
+                  alt="Ícone de respondido"
+                />
               </button>
 
-              <button onClick={handleHighlightButton}>
-                <img className={`answer ${isHighlighted && 'highlighted'}`} src={answerIcon} alt="Ícone de destacar" />
+              <button type="button" onClick={handleHighlightButton}>
+                <img
+                  className={`answer ${isHighlighted && 'highlighted'}`}
+                  src={answerIcon}
+                  alt="Ícone de destacar"
+                />
               </button>
-              
-              <button onClick={handleDeleteButton}>
-                <img className="delete" src={deleteIcon} alt="Ícone de deletar" /> 
+
+              <button type="button" onClick={handleDeleteButton}>
+                <img
+                  className="delete"
+                  src={deleteIcon}
+                  alt="Ícone de deletar"
+                />
               </button>
             </div>
           ) : (
             <div className="like-content">
               <span>{likeCount > 0 && likeCount}</span>
 
-              { !isAnswered && (
-                <button onClick={() => handleLikeButton()}>
-                  <img className={`like ${likeId && 'liked'}`} src={likeIcon} alt="Ícone de deletar" />
+              {!isAnswered && (
+                <button type="button" onClick={() => handleLikeButton()}>
+                  <img
+                    className={`like ${likeId && 'liked'}`}
+                    src={likeIcon}
+                    alt="Ícone de deletar"
+                  />
                 </button>
               )}
             </div>
