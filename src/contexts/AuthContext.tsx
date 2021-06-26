@@ -59,6 +59,7 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const githubProvider = new firebase.auth.GithubAuthProvider();
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
+    const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
     let provider;
 
@@ -69,6 +70,10 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
 
       case 'github':
         provider = githubProvider;
+        break;
+
+      case 'yahoo':
+        provider = yahooProvider;
         break;
 
       default:

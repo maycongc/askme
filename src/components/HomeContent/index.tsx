@@ -8,6 +8,7 @@ import googleImg from '../../assets/images/google-logo.svg';
 import loginImg from '../../assets/images/login.svg';
 import githubImg from '../../assets/images/github-mark.svg';
 import facebookImg from '../../assets/images/facebook-mark.svg';
+import yahooImg from '../../assets/images/yahoo-mark.svg';
 
 import { toastError } from '../../services/toast';
 import { database } from '../../services/firebase';
@@ -48,31 +49,50 @@ export function HomeContent(): JSX.Element {
     <div className="main-content">
       <img src={logoImg} alt="logo" />
 
-      <h2>Crie sua sala com</h2>
+      <h2>{!user ? 'Crie sua sala com' : 'Crie sua sala'}</h2>
 
-      <Button
-        onClick={() => handleCreateRoom('google')}
-        className="button filter sociais google"
-      >
-        <img src={googleImg} alt="logo Google" />
-        Google
-      </Button>
+      {!user ? (
+        <>
+          <Button
+            onClick={() => handleCreateRoom('google')}
+            className="button filter sociais google"
+          >
+            <img src={googleImg} alt="logo Google" />
+            Google
+          </Button>
 
-      <Button
-        onClick={() => handleCreateRoom('facebook')}
-        className="button filter sociais teste"
-      >
-        <img src={facebookImg} alt="logo Facebook" />
-        Facebook
-      </Button>
+          <Button
+            onClick={() => handleCreateRoom('facebook')}
+            className="button filter sociais facebook"
+          >
+            <img src={facebookImg} alt="logo Facebook" />
+            Facebook
+          </Button>
 
-      <Button
-        onClick={() => handleCreateRoom('github')}
-        className="button filter sociais github"
-      >
-        <img src={githubImg} alt="logo GitHub" />
-        GitHub
-      </Button>
+          <Button
+            onClick={() => handleCreateRoom('github')}
+            className="button filter sociais github"
+          >
+            <img src={githubImg} alt="logo GitHub" />
+            GitHub
+          </Button>
+
+          <Button
+            onClick={() => handleCreateRoom('yahoo')}
+            className="button filter sociais yahoo"
+          >
+            <img src={yahooImg} alt="logo Yahoo" />
+            Yahoo
+          </Button>
+        </>
+      ) : (
+        <Button
+          onClick={() => setIsHomePage(false)}
+          className="button filter create-button"
+        >
+          Criar sala
+        </Button>
+      )}
 
       <div className="separator">Ou entre em uma sala</div>
 

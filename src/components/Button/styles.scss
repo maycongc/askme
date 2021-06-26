@@ -35,10 +35,6 @@
   display: flex;
   height: 40px;
   width: 200px;
-
-  img {
-    width: 28px;
-  }
 }
 
 .google {
@@ -49,11 +45,11 @@
   }
 }
 
-.teste {
+.facebook {
   background: #3b5898;
 
   img {
-    width: 27px;
+    width: 26px;
     filter: invert(100%);
   }
 }
@@ -62,8 +58,22 @@
   background: rgb(47, 48, 65);
 
   img {
+    width: 28px;
     filter: invert(100%);
   }
+}
+
+.yahoo {
+  background: #720e9e;
+
+  img {
+    width: 22px;
+    filter: invert(100%);
+  }
+}
+
+.create-button {
+  width: 100%;
 }
 
 .back-button {

@@ -50,7 +50,7 @@ export function HomeCreateRoom(): JSX.Element {
       <form onSubmit={handleCreateRoom}>
         <input
           type="text"
-          placeholder="Digite o código da sala"
+          placeholder="Digite o nome da sala"
           onChange={event => setNewRoom(event.target.value)}
           value={newRoom}
         />

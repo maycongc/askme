@@ -1,3 +1,5 @@
+import { Toaster } from 'react-hot-toast';
+
 import { UserInfo } from '../../components/UserInfo';
 import { SignOutButton } from '../../components/SignOutButton';
 import { Aside } from '../../components/Aside';
@@ -22,6 +24,7 @@ export function Home(): JSX.Element {
 
   return (
     <div id="page-home">
+      <Toaster />
       <Aside />
 
       <main className="home-main">
