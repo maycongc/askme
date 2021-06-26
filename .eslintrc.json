@@ -35,7 +35,10 @@
         "consistent-return": "off",
         "react/jsx-props-no-spreading": "off",
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"]
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "no-duplicate-imports": "off",
+        "import/no-duplicates": "off",
+        "@typescript-eslint/no-duplicate-imports": ["error"]
     },
     "settings": {
         "import/resolver": {
