@@ -74,11 +74,11 @@
 
       .user-info{
         flex-direction: row-reverse;
+        align-self: center;
 
         img {
           width: 32px;
-          height: 32px;
-          margin-right: 8px;
+          height: 32px; 
         }
 
         strong {
