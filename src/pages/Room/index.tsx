@@ -95,11 +95,25 @@ export function Room(): JSX.Element {
             isAnswered: value.isAnswered,
             likeCount: Object.values(value.likes ?? {}).length,
             likeId: Object.entries(value.likes ?? {}).find(
-              ([likeKey, like]) => like.authorId === user?.id,
+              ([, like]) => like.authorId === user?.id,
             )?.[0],
           };
         },
       );
+
+      parsedQuestions.sort((a, b) => b.likeCount - a.likeCount);
+
+      parsedQuestions.sort((a, b) => {
+        if (!a.isHighlighted && b.isHighlighted) return 1;
+        if (a.isHighlighted && !b.isHighlighted) return -1;
+        return 0;
+      });
+
+      parsedQuestions.sort((a, b) => {
+        if (!a.isAnswered && b.isAnswered) return -1;
+        if (a.isAnswered && !b.isAnswered) return 1;
+        return 0;
+      });
 
       setRoomInfo({
         authorId: databaseRoom.authorId,
