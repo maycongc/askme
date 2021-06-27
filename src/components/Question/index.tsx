@@ -85,7 +85,7 @@ export function Question(
 
   return (
     <article
-      className={`${
+      className={`question-body ${
         (isHighlighted && 'highlighted') || (isAnswered && 'answered')
       }`}
     >
