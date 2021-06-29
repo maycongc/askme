@@ -35,7 +35,8 @@ export const ModalContentWrapper = styled.div`
     width: 100px;
     height: 40px;
     color: ${p => p.theme.colors.text2};
-    background: #f0f0f0;
+    background: ${p =>
+      p.theme.title === 'dark' ? '#f0f0f0' : p.theme.colors.gray1};
   }
 `;
 
