@@ -2,17 +2,18 @@ import { Toaster } from 'react-hot-toast';
 
 import { UserInfo } from '../../components/UserInfo';
 import { SignOutButton } from '../../components/SignOutButton';
-import { Aside } from '../../components/Aside';
-import { HomeContent } from '../../components/HomeContent';
-import { HomeCreateRoom } from '../../components/HomeCreateRoom';
+import { HomeAside } from '../../components/HomeAside';
+import { HomeMainContent } from '../../components/HomeMainContent';
 import { Button } from '../../components/Button';
+import { ModalLogin } from '../../components/Modal/ModalLogin';
+import { ThemeSwitchButton } from '../../components/ThemeSwitchButton';
 
 import leftArrowIcon from '../../assets/images/arrow-back.svg';
 
 import { useAuth } from '../../hooks/useAuth';
 import { useHome } from '../../hooks/useHome';
 
-import './styles.scss';
+import { HomeWrapper, HomeHeader } from './styles';
 
 export function Home(): JSX.Element {
   const { user } = useAuth();
@@ -23,12 +24,14 @@ export function Home(): JSX.Element {
   }
 
   return (
-    <div id="page-home">
+    <HomeWrapper>
+      <ThemeSwitchButton />
       <Toaster />
-      <Aside />
+      <ModalLogin />
+      <HomeAside />
 
       <main className="home-main">
-        <header className={`home-header ${!isHomePage && 'gap'}`}>
+        <HomeHeader gap={!isHomePage}>
           {!isHomePage && (
             <Button onClick={handleBackButton} className="button back-button">
               <img src={leftArrowIcon} alt="" />
@@ -39,10 +42,10 @@ export function Home(): JSX.Element {
             <UserInfo />
             {user && <SignOutButton />}
           </div>
-        </header>
+        </HomeHeader>
 
-        {isHomePage ? <HomeContent /> : <HomeCreateRoom />}
+        <HomeMainContent />
       </main>
-    </div>
+    </HomeWrapper>
   );
 }

@@ -1,9 +1,11 @@
-@import '../../styles/variables';
+import styled from 'styled-components';
 
-.signOut {
+import { Button } from '../Button';
+
+export const ButtonSignOut = styled(Button)`
   height: 35px;
   color: #fff;
-  background: $color4;
+  background: ${p => p.theme.colors.color4};
   font: 500 15px 'Roboto', sans-serif;
 
   border: 0;
@@ -25,6 +27,6 @@
   }
 
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.85);
   }
-}
+`;

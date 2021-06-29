@@ -10,7 +10,7 @@ import { database } from '../../services/firebase';
 
 import { QuestionProps } from '../../pages/Room';
 
-import './styles.scss';
+import { StyledQuestion } from './styles';
 
 export function Question(
   props: QuestionProps & {
@@ -84,8 +84,8 @@ export function Question(
   }
 
   return (
-    <article
-      className={`question-body ${
+    <StyledQuestion
+      className={`${
         (isHighlighted && 'highlighted') || (isAnswered && 'answered')
       }`}
     >
@@ -141,6 +141,6 @@ export function Question(
           )}
         </div>
       </div>
-    </article>
+    </StyledQuestion>
   );
 }

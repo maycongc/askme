@@ -7,9 +7,9 @@ import {
   useEffect,
 } from 'react';
 import { useHistory } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 import { database } from '../services/firebase';
+import { toastSuccess } from '../services/toast';
 
 export type ModalType = {
   isHidden: boolean;
@@ -47,10 +47,10 @@ export function ModalContextProvider(props: PropsType): JSX.Element {
       .remove()
       .then(() => {
         if (!refPath.includes('questions')) {
-          toast.success('Room closed successfully!');
+          toastSuccess('Room closed successfully!');
           history.push('/');
         } else {
-          toast.success('Question deleted successfully!');
+          toastSuccess('Question deleted successfully!');
         }
       });
   }, [refPath, history]);

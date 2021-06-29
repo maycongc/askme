@@ -1,15 +1,15 @@
 import illustrationImg from '../../assets/images/illustration.svg';
 
-import './styles.scss';
+import { Aside } from './styles';
 
-export function Aside(): JSX.Element {
+export function HomeAside(): JSX.Element {
   return (
-    <aside>
+    <Aside>
       <div>
         <img src={illustrationImg} alt="Ilustração de perguntas e respostas" />
         <strong>Toda pergunta tem uma resposta.</strong>
         <p>Aprenda e compartilhe conhecimento com outras pessoas</p>
       </div>
-    </aside>
+    </Aside>
   );
 }

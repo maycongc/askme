@@ -14,7 +14,8 @@ import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
 import { QuestionProps } from '../../pages/Room';
 
-import './styles.scss';
+import { ContentWrapper } from './styles';
+import { useModal } from '../../hooks/useModal';
 
 type RoomContentProps = {
   code: string;
@@ -24,7 +25,8 @@ type RoomContentProps = {
 };
 
 export function RoomContent(props: RoomContentProps): JSX.Element {
-  const { user, signInWithGoogle } = useAuth();
+  const { user } = useAuth();
+  const { setIsHidden } = useModal();
   const { code: roomId, authorId, title, questions } = props;
 
   const [question, setQuestion] = useState('');
@@ -53,12 +55,12 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
     setQuestion('');
   }
 
-  async function handleLogin(signInType: string) {
-    if (!user) await signInWithGoogle(signInType);
+  async function handleLogin() {
+    setIsHidden(false);
   }
 
   return (
-    <main className="room-main">
+    <ContentWrapper>
       <Toaster />
 
       <div className="room-title">
@@ -82,7 +84,7 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
             {!user ? (
               <span>
                 Para enviar uma pergunta,{' '}
-                <button type="button" onClick={() => handleLogin('google')}>
+                <button type="button" onClick={handleLogin}>
                   faça seu login.
                 </button>
               </span>
@@ -123,6 +125,6 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
           userId={user?.id}
         />
       ))}
-    </main>
+    </ContentWrapper>
   );
 }

@@ -18,7 +18,7 @@ type UserType = {
 export type AuthContextType = {
   user: UserType | undefined;
   setUser: Dispatch<SetStateAction<UserType | undefined>>;
-  signInWithGoogle: (signInType: string) => Promise<void>;
+  signIn: (signInType: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -55,7 +55,7 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
     };
   }, []);
 
-  async function signInWithGoogle(signInType: string) {
+  async function signIn(signInType: string) {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const githubProvider = new firebase.auth.GithubAuthProvider();
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
@@ -103,7 +103,7 @@ export function AuthContextProvider(props: PropsType): JSX.Element {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, signInWithGoogle, signOut }}>
+    <AuthContext.Provider value={{ user, setUser, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

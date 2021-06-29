@@ -1,12 +1,13 @@
-@import '../../styles/variables';
+import styled from 'styled-components';
 
-.room-main {
+export const ContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
 
-  height: 100vh;
+  height: 100%;
   width: 800px;
-  margin: 0 auto;
+
+  padding-bottom: 50px;
 
   .room-title {
     display: flex;
@@ -15,7 +16,7 @@
 
     h1 {
       font: 700 24px 'Poppins', sans-serif;
-      color: $text1;
+      color: ${p => p.theme.colors.text1};
     }
 
     span {
@@ -27,7 +28,7 @@
       height: 32px;
 
       margin-left: 16px;
-      background: $color2;
+      background: ${p => p.theme.colors.color2};
       color: #fff;
       font: 500 14px 'Roboto', sans-serif;
       border-radius: 16px;
@@ -50,11 +51,14 @@
       border-radius: 8px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 
-      background: #fff;
+      background: ${p =>
+        p.theme.title === 'dark' ? p.theme.colors.background2 : '#fff'};
+
+      color: ${p => p.theme.title === 'dark' && '#fff'};
 
       &:focus {
         outline: none;
-        border: 1px solid $color1;
+        border: 1px solid ${p => p.theme.colors.color1};
       }
     }
 
@@ -72,13 +76,13 @@
         color: #737380;
       }
 
-      .user-info{
+      div {
         flex-direction: row-reverse;
         align-self: center;
 
         img {
           width: 32px;
-          height: 32px; 
+          height: 32px;
         }
 
         strong {
@@ -86,16 +90,13 @@
         }
       }
 
-      button {
-
-        &:first-child {
-          border: 0;
-          background: none;
-          cursor: pointer;
-          color: $color1;
-          text-decoration: underline;
-          font: 500 14px 'Roboto', sans-serif;
-        }
+      button:first-child {
+        border: 0;
+        background: none;
+        cursor: pointer;
+        color: ${p => p.theme.colors.color1};
+        text-decoration: underline;
+        font: 500 14px 'Roboto', sans-serif;
       }
     }
   }
@@ -126,7 +127,12 @@
     p {
       text-align: center;
       font: 400 14px 'Roboto', sans-serif;
-      color: $gray2;
+      color: ${p =>
+        p.theme.title ? p.theme.colors.gray1 : p.theme.colors.gray2};
     }
   }
-}
+
+  article + article {
+    margin-top: 8px;
+  }
+`;

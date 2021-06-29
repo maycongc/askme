@@ -1,16 +1,12 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Button } from '../Button';
+import { useHome } from '../../../hooks/useHome';
+import { useAuth } from '../../../hooks/useAuth';
 
-import { useHome } from '../../hooks/useHome';
-import { useAuth } from '../../hooks/useAuth';
+import { database } from '../../../services/firebase';
 
-import { database } from '../../services/firebase';
-
-import logoImg from '../../assets/images/logo.svg';
-
-import './styles.scss';
+import { Span, StyledButton } from './styles';
 
 export function HomeCreateRoom(): JSX.Element {
   const { setIsHomePage } = useHome();
@@ -42,9 +38,7 @@ export function HomeCreateRoom(): JSX.Element {
   }
 
   return (
-    <div className="main-content">
-      <img src={logoImg} alt="logo" />
-
+    <>
       <h2>Crie uma nova sala</h2>
 
       <form onSubmit={handleCreateRoom}>
@@ -55,17 +49,19 @@ export function HomeCreateRoom(): JSX.Element {
           value={newRoom}
         />
 
-        <Button type="submit" className="button filter">
-          Criar sala
-        </Button>
+        <StyledButton type="submit">Criar sala</StyledButton>
       </form>
 
-      <span>
+      <Span>
         Quer entrar em uma sala já existente?{' '}
-        <Button className="link-button" onClick={() => setIsHomePage(true)}>
+        <button
+          type="button"
+          className="link-button"
+          onClick={() => setIsHomePage(true)}
+        >
           Clique aqui
-        </Button>
-      </span>
-    </div>
+        </button>
+      </Span>
+    </>
   );
 }

@@ -1,4 +1,6 @@
-.user-info {
+import styled from 'styled-components';
+
+export const UserInfoWrapper = styled.div`
   display: flex;
   align-self: flex-end;
   align-items: center;
@@ -20,4 +22,4 @@
     height: 40px;
     border-radius: 20px;
   }
-}
+`;

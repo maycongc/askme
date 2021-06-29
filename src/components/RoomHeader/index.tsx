@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
+import { useTheme } from 'styled-components';
 import logoImg from '../../assets/images/logo.svg';
+import logoLightImg from '../../assets/images/logo-light.svg';
 import copyImg from '../../assets/images/copy.svg';
 
 import { Button } from '../Button';
@@ -12,7 +14,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { toastSuccess } from '../../services/toast';
 
-import './styles.scss';
+import { HeaderWrapper } from './styles';
 
 type HeaderProps = {
   code: string;
@@ -20,9 +22,11 @@ type HeaderProps = {
 };
 
 export function RoomHeader(props: HeaderProps): JSX.Element {
+  const { authorId, code: roomId } = props;
+
   const { user } = useAuth();
   const { isHidden, setIsHidden, setInfo } = useModal();
-  const { authorId, code: roomId } = props;
+  const { title } = useTheme();
 
   function copyToClipboard() {
     navigator.clipboard.writeText(roomId);
@@ -41,9 +45,12 @@ export function RoomHeader(props: HeaderProps): JSX.Element {
   return (
     <>
       <Toaster />
-      <header className="room-header">
+      <HeaderWrapper className="room-header">
         <Link to="/">
-          <img src={logoImg} className="room-logo" alt="Imagem da logo" />
+          <img
+            src={title === 'light' ? logoImg : logoLightImg}
+            alt="Imagem da logo"
+          />
         </Link>
 
         <div className="buttons">
@@ -62,7 +69,7 @@ export function RoomHeader(props: HeaderProps): JSX.Element {
 
           {user && <SignOutButton />}
         </div>
-      </header>
+      </HeaderWrapper>
     </>
   );
 }

@@ -3,7 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { RoomHeader } from '../../components/RoomHeader';
 import { RoomContent } from '../../components/RoomContent';
-import { DangerousActionModal } from '../../components/DangerousActionModal';
+import { DangerousActionModal } from '../../components/Modal/DangerousActionModal';
+import { ModalLogin } from '../../components/Modal/ModalLogin';
+import { ThemeSwitchButton } from '../../components/ThemeSwitchButton';
 
 import { database } from '../../services/firebase';
 import { toastError } from '../../services/toast';
@@ -11,7 +13,7 @@ import { toastError } from '../../services/toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useModal } from '../../hooks/useModal';
 
-import './styles.scss';
+import { RoomWrapper } from './styles';
 
 type RoomParams = {
   id: string;
@@ -132,7 +134,9 @@ export function Room(): JSX.Element {
   }
 
   return (
-    <div id="page-room">
+    <RoomWrapper>
+      <ThemeSwitchButton />
+      {!user && <ModalLogin />}
       {roomInfo.authorId === user?.id && (
         <DangerousActionModal
           buttonConfirm={
@@ -154,6 +158,6 @@ export function Room(): JSX.Element {
         title={roomInfo.title}
         questions={questions}
       />
-    </div>
+    </RoomWrapper>
   );
 }

@@ -1,11 +1,13 @@
 import { ReactNode, useState, useEffect } from 'react';
 
-import closeRoomIcon from '../../assets/images/modal-close.svg';
-import deleteQuestionIcon from '../../assets/images/modal-delete.svg';
+import { ModalBackground } from '../Background';
 
-import { useModal } from '../../hooks/useModal';
+import closeRoomIcon from '../../../assets/images/modal-close.svg';
+import deleteQuestionIcon from '../../../assets/images/modal-delete.svg';
 
-import './styles.scss';
+import { useModal } from '../../../hooks/useModal';
+
+import { ModalWrapper } from './styles';
 
 type ModalInfoProps = {
   title: string;
@@ -19,7 +21,7 @@ type ModalProps = {
 export function DangerousActionModal({
   buttonConfirm,
 }: ModalProps): JSX.Element {
-  const { isHidden, setIsHidden, info } = useModal();
+  const { setIsHidden, info } = useModal();
 
   const [modalInfo, setModalInfo] = useState<ModalInfoProps>();
 
@@ -48,18 +50,18 @@ export function DangerousActionModal({
     setIsHidden(true);
   }
 
-  const show = {
-    height: '100vh',
-  };
+  // const show = {
+  //   height: '100vh',
+  // };
 
-  const hide = {
-    height: 0,
-    overflow: 'hidden',
-  };
+  // const hide = {
+  //   height: 0,
+  //   overflow: 'hidden',
+  // };
 
   return (
-    <div className="modal-body" style={isHidden ? hide : show}>
-      <div className="modal-content">
+    <ModalBackground>
+      <ModalWrapper>
         <img
           src={info.type === 'room' ? closeRoomIcon : deleteQuestionIcon}
           alt="Imagem de perigo"
@@ -77,7 +79,7 @@ export function DangerousActionModal({
 
           {buttonConfirm}
         </div>
-      </div>
-    </div>
+      </ModalWrapper>
+    </ModalBackground>
   );
 }

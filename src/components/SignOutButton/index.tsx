@@ -1,11 +1,9 @@
-import { Button } from '../Button';
-
 import loginIcon from '../../assets/images/logout.svg';
 
 import { useAuth } from '../../hooks/useAuth';
 import { useHome } from '../../hooks/useHome';
 
-import './styles.scss';
+import { ButtonSignOut } from './styles';
 
 export function SignOutButton(): JSX.Element {
   const { user, setUser, signOut } = useAuth();
@@ -20,9 +18,9 @@ export function SignOutButton(): JSX.Element {
   }
 
   return (
-    <Button onClick={handleSignOut} className="signOut">
+    <ButtonSignOut onClick={handleSignOut}>
       <img src={loginIcon} alt="Logout ícone" />
       Deslogar
-    </Button>
+    </ButtonSignOut>
   );
 }
