@@ -60,6 +60,7 @@ Este projeto visa a auxiliar pessoas, como por exemplo um streamer, a sanar as d
 - **[ done ]** Destacar pergunta (se autenticado como autor da sala)
 - **[ done ]** Marcar pergunta como respondida (se autenticado como autor da sala)
 - **[ done ]** Excluir pergunta (se autenticado como autor da sala)
+- **[ done ]** Mudança de tema (dark e light) com gravação no localStorage.
 
 <br />
 
