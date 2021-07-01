@@ -8,7 +8,7 @@ import { useModal } from '../../hooks/useModal';
 import { toastError } from '../../services/toast';
 import { database } from '../../services/firebase';
 
-import { QuestionProps } from '../../pages/Room';
+import { QuestionProps } from '../../hooks/useRoom';
 
 import { StyledQuestion } from './styles';
 

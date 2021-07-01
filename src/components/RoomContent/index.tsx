@@ -12,7 +12,7 @@ import { toastError, toastSuccess } from '../../services/toast';
 
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
-import { QuestionProps } from '../../pages/Room';
+import { QuestionProps } from '../../hooks/useRoom';
 
 import { ContentWrapper } from './styles';
 import { useModal } from '../../hooks/useModal';
