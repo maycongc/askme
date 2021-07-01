@@ -4,7 +4,7 @@
 
 <h3 align="center">
   Application preview:
-  <a href="https://askme-nl.web.app/">
+  <a href="https://askme.vercel.app/">
     Ask Me
   </a>
 </h3>
