@@ -1,6 +1,27 @@
 import styled from 'styled-components';
 
 export const StyledQuestion = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  height: fit-content;
+
+  overflow: hidden;
+  animation: expand 0.3s linear;
+
+  @keyframes expand {
+    from {
+      height: 130px;
+      width: 780px;
+    }
+
+    to {
+      height: fit-content;
+      width: 800px;
+    }
+  }
+
   background: ${p =>
     p.theme.title === 'dark' ? p.theme.colors.background3 : ''};
   width: 100%;
@@ -55,6 +76,7 @@ export const StyledQuestion = styled.article`
         gap: 7px;
 
         span {
+          transition: all 0.2s ease;
           font: 400 16px 'Poppins', sans-serif;
           color: ${p => p.theme.colors.color1};
         }

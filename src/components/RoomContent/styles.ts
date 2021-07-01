@@ -4,7 +4,7 @@ export const ContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
+  height: fit-content;
   width: 800px;
 
   padding-bottom: 50px;
