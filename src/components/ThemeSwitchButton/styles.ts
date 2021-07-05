@@ -10,8 +10,8 @@ export const ThemeSwitchButtonWrapper = styled.button`
 
   position: absolute;
 
-  bottom: 3%;
-  right: 2%;
+  bottom: 2rem;
+  right: 3rem;
 
   border: 0;
   border-radius: 25px;
