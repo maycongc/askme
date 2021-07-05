@@ -1,15 +1,17 @@
 import illustrationImg from '../../assets/images/illustration.svg';
 
-import { Aside } from './styles';
+import { AsideWrapper, ContentWrapper } from './styles';
 
 export function HomeAside(): JSX.Element {
   return (
-    <Aside>
-      <div>
+    <AsideWrapper>
+      <ContentWrapper>
         <img src={illustrationImg} alt="Ilustração de perguntas e respostas" />
-        <strong>Toda pergunta tem uma resposta.</strong>
-        <p>Aprenda e compartilhe conhecimento com outras pessoas</p>
-      </div>
-    </Aside>
+        <div>
+          <strong>Toda pergunta tem uma resposta.</strong>
+          <p>Aprenda e compartilhe conhecimento com outras pessoas</p>
+        </div>
+      </ContentWrapper>
+    </AsideWrapper>
   );
 }
