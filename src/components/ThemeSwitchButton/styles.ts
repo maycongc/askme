@@ -5,13 +5,13 @@ export const ThemeSwitchButtonWrapper = styled.button`
   align-items: center;
   justify-content: center;
 
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
 
-  position: absolute;
+  position: fixed;
 
-  bottom: 2rem;
-  right: 3rem;
+  bottom: 1rem;
+  right: 1.5rem;
 
   border: 0;
   border-radius: 25px;
@@ -28,8 +28,20 @@ export const ThemeSwitchButtonWrapper = styled.button`
   }
 
   &:hover {
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 400px) {
+    width: 45px;
+    height: 45px;
+
+    bottom: 2rem;
+    right: 3rem;
+
+    &:hover {
+      width: 50px;
+      height: 50px;
+    }
   }
 `;
