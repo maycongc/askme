@@ -11,11 +11,11 @@ export const StyledButton = styled(Button)`
 `;
 
 export const Separator = styled.div`
-  width: 100%;
-  font-size: 14px;
+  width: 80%;
+  font-size: 1.4rem;
   color: ${props => props.theme.colors.gray1};
 
-  margin: 32px 0;
+  margin: 3.2rem 0;
   display: flex;
   align-items: center;
 
@@ -24,7 +24,7 @@ export const Separator = styled.div`
     flex: 1;
     height: 1px;
     background: ${props => props.theme.colors.gray1};
-    margin-right: 16px;
+    margin-right: 1rem;
   }
 
   &::after {
@@ -32,6 +32,10 @@ export const Separator = styled.div`
     flex: 1;
     height: 1px;
     background: ${props => props.theme.colors.gray1};
-    margin-left: 16px;
+    margin-left: 1rem;
+  }
+
+  @media (min-width: 930px) {
+    width: 100%;
   }
 `;

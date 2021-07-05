@@ -54,11 +54,7 @@ export function HomeCreateRoom(): JSX.Element {
 
       <Span>
         Quer entrar em uma sala já existente?{' '}
-        <button
-          type="button"
-          className="link-button"
-          onClick={() => setIsHomePage(true)}
-        >
+        <button type="button" onClick={() => setIsHomePage(true)}>
           Clique aqui
         </button>
       </Span>

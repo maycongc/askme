@@ -10,12 +10,20 @@ export const StyledButton = styled(Button)`
 `;
 
 export const Span = styled.span`
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  font-size: 1.4rem;
   color: ${props => props.theme.colors.gray2};
-  margin-top: 16px;
+  margin-top: 1.6rem;
+  align-items: center;
 
-  .link-button {
-    font: 400 14px 'Roboto', sans-serif;
+  button {
+    display: flex;
+
+    width: fit-content;
+    height: fit-content;
+    font: 400 1.4rem 'Roboto', sans-serif;
     color: ${p => p.theme.colors.color2};
     background: none;
     border: 0;
@@ -26,5 +34,12 @@ export const Span = styled.span`
     &:hover {
       filter: brightness(0.85);
     }
+  }
+
+  @media (min-width: 930px) {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 0.4rem;
   }
 `;
