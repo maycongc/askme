@@ -20,7 +20,6 @@ export function SignOutButton(): JSX.Element {
   return (
     <ButtonSignOut onClick={handleSignOut}>
       <img src={loginIcon} alt="Logout ícone" />
-      Deslogar
     </ButtonSignOut>
   );
 }

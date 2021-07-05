@@ -7,19 +7,25 @@ export const UserInfoWrapper = styled.div`
   justify-content: flex-end;
   width: fit-content;
 
-  gap: 10px;
+  gap: 1rem;
 
   strong {
     text-align: center;
     height: fit-content;
     width: fit-content;
-    font: 700 17px 'Poppins', sans-serif;
+    font: 600 1.4rem 'Poppins', sans-serif;
   }
 
   img {
     display: flex;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+  }
+
+  @media (min-width: 420px) {
+    strong {
+      font-size: 1.7rem;
+    }
   }
 `;

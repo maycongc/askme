@@ -30,7 +30,7 @@ export const ContentWrapper = styled.div`
   gap: 1rem;
 
   img {
-    max-width: 200px;
+    max-width: 16rem;
   }
 
   color: ${p =>
@@ -57,6 +57,10 @@ export const ContentWrapper = styled.div`
 
   @media (min-width: 455px) {
     flex-direction: row;
+
+    img {
+      max-width: 20rem;
+    }
 
     div {
       max-width: 24.7rem;
