@@ -19,8 +19,6 @@ export const Span = styled.span`
   align-items: center;
 
   button {
-    display: flex;
-
     width: fit-content;
     height: fit-content;
     font: 400 1.4rem 'Roboto', sans-serif;
