@@ -8,9 +8,10 @@ import { database } from '../../../services/firebase';
 
 import { useAuth } from '../../../hooks/useAuth';
 import { useHome } from '../../../hooks/useHome';
-
-import { Separator, StyledButton } from './styles';
 import { useModal } from '../../../hooks/useModal';
+
+import { StyledButton } from '../styles';
+import { Separator } from './styles';
 
 export function HomeJoinRoom(): JSX.Element {
   const { user } = useAuth();

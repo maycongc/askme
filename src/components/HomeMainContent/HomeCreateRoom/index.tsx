@@ -6,7 +6,8 @@ import { useAuth } from '../../../hooks/useAuth';
 
 import { database } from '../../../services/firebase';
 
-import { Span, StyledButton } from './styles';
+import { StyledButton } from '../styles';
+import { Span } from './styles';
 
 export function HomeCreateRoom(): JSX.Element {
   const { setIsHomePage } = useHome();

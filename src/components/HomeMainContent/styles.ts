@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../Button';
 
 export const MainContent = styled.div`
   display: flex;
@@ -76,5 +77,13 @@ export const MainContent = styled.div`
       width: 100%;
       height: 5rem;
     }
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: brightness(0.85);
   }
 `;

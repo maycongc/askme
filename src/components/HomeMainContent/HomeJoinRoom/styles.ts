@@ -1,14 +1,4 @@
 import styled from 'styled-components';
-import { Button } from '../../Button';
-
-export const StyledButton = styled(Button)`
-  width: 100%;
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: brightness(0.85);
-  }
-`;
 
 export const Separator = styled.div`
   width: 80%;

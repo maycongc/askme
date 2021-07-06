@@ -1,13 +1,4 @@
 import styled from 'styled-components';
-import { Button } from '../../Button';
-
-export const StyledButton = styled(Button)`
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: brightness(0.85);
-  }
-`;
 
 export const Span = styled.span`
   display: flex;
@@ -35,7 +26,7 @@ export const Span = styled.span`
   }
 
   @media (min-width: 930px) {
-    flex-direction: row;
+    display: initial;
     justify-content: center;
     width: 100%;
     gap: 0.4rem;
