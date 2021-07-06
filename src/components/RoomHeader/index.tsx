@@ -6,7 +6,6 @@ import logoImg from '../../assets/images/logo.svg';
 import logoLightImg from '../../assets/images/logo-light.svg';
 import copyImg from '../../assets/images/copy.svg';
 
-import { Button } from '../Button';
 import { SignOutButton } from '../SignOutButton';
 
 import { useModal } from '../../hooks/useModal';
@@ -14,7 +13,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { toastSuccess } from '../../services/toast';
 
-import { HeaderWrapper } from './styles';
+import * as S from './styles';
 
 type HeaderProps = {
   code: string;
@@ -45,31 +44,33 @@ export function RoomHeader(props: HeaderProps): JSX.Element {
   return (
     <>
       <Toaster />
-      <HeaderWrapper className="room-header">
-        <Link to="/">
-          <img
-            src={title === 'light' ? logoImg : logoLightImg}
-            alt="Imagem da logo"
-          />
-        </Link>
+      <S.HeaderWrapper>
+        <S.ContentWrapper>
+          <Link to="/">
+            <img
+              src={title === 'light' ? logoImg : logoLightImg}
+              alt="Imagem da logo"
+            />
+          </Link>
 
-        <div className="buttons">
-          <Button onClick={copyToClipboard} className="room-button">
-            <div>
-              <img src={copyImg} alt="Ícone de copiar" />
-            </div>
-            <span>Sala #{roomId}</span>
-          </Button>
+          <S.ButtonsWrapper>
+            <S.RoomButtonWrapper onClick={copyToClipboard}>
+              <div>
+                <img src={copyImg} alt="Ícone de copiar" />
+              </div>
+              <span>Sala #{roomId}</span>
+            </S.RoomButtonWrapper>
 
-          {user?.id === authorId && (
-            <Button onClick={handleCloseRoom} className="close-room">
-              Encerrar sala
-            </Button>
-          )}
+            {user?.id === authorId && (
+              <S.CloseRoomButtonWrapper onClick={handleCloseRoom}>
+                Encerrar sala
+              </S.CloseRoomButtonWrapper>
+            )}
 
-          {user && <SignOutButton />}
-        </div>
-      </HeaderWrapper>
+            {user && <SignOutButton />}
+          </S.ButtonsWrapper>
+        </S.ContentWrapper>
+      </S.HeaderWrapper>
     </>
   );
 }
