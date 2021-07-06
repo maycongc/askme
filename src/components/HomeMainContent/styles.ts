@@ -49,9 +49,12 @@ export const MainContent = styled.div`
       caret-color: ${p => (p.theme.title === 'dark' ? '#fff' : '#000')};
       border: 1px solid ${props => props.theme.colors.gray1};
 
+      transition: transform 0.3s ease;
+
       &:focus {
         outline: none;
         border: 1px solid ${props => props.theme.colors.color1};
+        transform: scaleX(1.03);
       }
     }
   }

@@ -28,8 +28,7 @@ export const ThemeSwitchButtonWrapper = styled.button`
   }
 
   &:hover {
-    width: 4rem;
-    height: 4rem;
+    transform: scale(1.15);
   }
 
   @media (min-width: 400px) {
@@ -38,10 +37,5 @@ export const ThemeSwitchButtonWrapper = styled.button`
 
     bottom: 2rem;
     right: 3rem;
-
-    &:hover {
-      width: 5rem;
-      height: 5rem;
-    }
   }
 `;

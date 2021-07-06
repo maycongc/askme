@@ -17,7 +17,7 @@ export const StyledButton = styled.button`
 
   cursor: pointer;
 
-  transition: filter 0.3s;
+  transition: all 0.3s ease;
 
   &:disabled {
     opacity: 0.6;

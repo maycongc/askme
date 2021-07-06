@@ -33,6 +33,12 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 
   [disabled] {
