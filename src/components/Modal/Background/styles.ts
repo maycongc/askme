@@ -5,8 +5,13 @@ type ModalWrapperProps = {
 };
 
 export const ModalWrapper = styled.div<ModalWrapperProps>`
+  position: fixed;
+  max-width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
-  position: absolute;
   height: ${p => (p.isHidden ? 0 : '100vh')};
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.8);
