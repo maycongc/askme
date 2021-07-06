@@ -3,7 +3,7 @@ import { Button } from '../Button';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
-  height: 8.9rem;
+  min-height: 8.9rem;
 
   display: flex;
   justify-content: center;
@@ -21,6 +21,7 @@ export const HeaderWrapper = styled.header`
 export const ContentWrapper = styled.div`
   max-width: 90rem;
   width: 90%;
+  height: 100%;
 
   margin: 0 auto;
 

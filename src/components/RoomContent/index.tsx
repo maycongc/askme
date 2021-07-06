@@ -1,21 +1,19 @@
 import { FormEvent, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-import { Button } from '../Button';
 import { UserInfo } from '../UserInfo';
 import { Question } from '../Question';
-
-import { useAuth } from '../../hooks/useAuth';
 
 import { database } from '../../services/firebase';
 import { toastError, toastSuccess } from '../../services/toast';
 
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
+import { useAuth } from '../../hooks/useAuth';
 import { QuestionProps } from '../../hooks/useRoom';
-
-import { ContentWrapper } from './styles';
 import { useModal } from '../../hooks/useModal';
+
+import * as S from './styles';
 
 type RoomContentProps = {
   code: string;
@@ -60,27 +58,28 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
   }
 
   return (
-    <ContentWrapper>
+    <S.ContentWrapper>
       <Toaster />
 
-      <div className="room-title">
+      <S.RoomTitleWrapper>
         <h1>Sala {title}</h1>
         <span>
           {questions && questions.length > 1
-            ? `${questions.length} perguntas`
-            : `${questions.length} pergunta`}
+            ? `${questions.length}`
+            : `${questions.length}`}
+          <p>perguntas</p>
         </span>
-      </div>
+      </S.RoomTitleWrapper>
 
       {user?.id !== authorId && (
-        <form onSubmit={handleNewQuestion}>
+        <S.FormWrapper onSubmit={handleNewQuestion}>
           <textarea
             placeholder="O que você quer perguntar?"
             onChange={event => setQuestion(event.target.value)}
             value={question}
           />
 
-          <div className="form-footer">
+          <S.FormFooterWrapper>
             {!user ? (
               <span>
                 Para enviar uma pergunta,{' '}
@@ -92,19 +91,19 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
               <UserInfo />
             )}
 
-            <Button type="submit" disabled={!user}>
+            <S.FormSubmitButtonWrapper type="submit" disabled={!user}>
               Enviar pergunta
-            </Button>
-          </div>
-        </form>
+            </S.FormSubmitButtonWrapper>
+          </S.FormFooterWrapper>
+        </S.FormWrapper>
       )}
 
       {questions.length === 0 && (
-        <div className="empty-questions">
+        <S.EmptyQuestionWrapper>
           <img src={emptyQuestionsImg} alt="" />
           <strong>Nenhuma pergunta por aqui...</strong>
           <p>Faça seu login e seja a primeira pessoa a fazer uma pergunta!</p>
-        </div>
+        </S.EmptyQuestionWrapper>
       )}
 
       {questions.map(questionData => (
@@ -125,6 +124,6 @@ export function RoomContent(props: RoomContentProps): JSX.Element {
           userId={user?.id}
         />
       ))}
-    </ContentWrapper>
+    </S.ContentWrapper>
   );
 }

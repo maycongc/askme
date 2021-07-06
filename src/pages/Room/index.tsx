@@ -9,9 +9,9 @@ import { LoaderAnimation } from '../../components/LoaderAnimation';
 
 import { useAuth } from '../../hooks/useAuth';
 import { useModal } from '../../hooks/useModal';
+import { useRoom } from '../../hooks/useRoom';
 
 import { RoomWrapper } from './styles';
-import { useRoom } from '../../hooks/useRoom';
 
 type RoomParams = {
   id: string;
@@ -36,7 +36,9 @@ export function Room(): JSX.Element {
       ) : (
         <RoomWrapper>
           <ThemeSwitchButton />
+
           {!user && <ModalLogin />}
+
           {roomInfo.authorId === user?.id && (
             <DangerousActionModal
               buttonConfirm={

@@ -10,7 +10,7 @@ import { database } from '../../services/firebase';
 
 import { QuestionProps } from '../../hooks/useRoom';
 
-import { StyledQuestion } from './styles';
+import { QuestionWrapper, QuestionFooterWrapper } from './styles';
 
 export function Question(
   props: QuestionProps & {
@@ -84,14 +84,14 @@ export function Question(
   }
 
   return (
-    <StyledQuestion
+    <QuestionWrapper
       className={`${
         (isHighlighted && 'highlighted') || (isAnswered && 'answered')
       }`}
     >
       <p>{content}</p>
 
-      <div className="question-footer">
+      <QuestionFooterWrapper className="question-footer">
         <div className="question-user-info">
           <img src={author.avatar} alt="Foto de usuário" />
           <span>{author.name}</span>
@@ -140,7 +140,7 @@ export function Question(
             </div>
           )}
         </div>
-      </div>
-    </StyledQuestion>
+      </QuestionFooterWrapper>
+    </QuestionWrapper>
   );
 }
