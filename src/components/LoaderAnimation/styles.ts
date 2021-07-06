@@ -13,8 +13,8 @@ export const LoadingWrapper = styled.div<LoadingProps>`
 
   div {
     animation: spin 0.7s linear infinite;
-    border: 10px solid ${({ theme }) => theme.colors.gray2};
-    border-top: 10px solid ${({ theme }) => theme.colors.color1};
+    border: 1rem solid ${({ theme }) => theme.colors.gray2};
+    border-top: 1rem solid ${({ theme }) => theme.colors.color1};
     border-radius: 50%;
     height: 50px;
     width: 50px;

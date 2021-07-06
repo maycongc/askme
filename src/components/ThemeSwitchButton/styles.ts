@@ -5,8 +5,8 @@ export const ThemeSwitchButtonWrapper = styled.button`
   align-items: center;
   justify-content: center;
 
-  width: 35px;
-  height: 35px;
+  width: 3.5rem;
+  height: 3.5rem;
 
   position: fixed;
 
@@ -14,34 +14,34 @@ export const ThemeSwitchButtonWrapper = styled.button`
   right: 1.5rem;
 
   border: 0;
-  border-radius: 25px;
+  border-radius: 2.5rem;
 
   background-color: ${p => (p.theme.title === 'dark' ? '#344E5D' : '#99810B')};
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
 
   transition: all 0.2s ease;
 
   img {
-    width: 35px;
+    width: 3.5rem;
 
     transition: all 0.2s ease;
   }
 
   &:hover {
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
   }
 
   @media (min-width: 400px) {
-    width: 45px;
-    height: 45px;
+    width: 4.5rem;
+    height: 4.5rem;
 
     bottom: 2rem;
     right: 3rem;
 
     &:hover {
-      width: 50px;
-      height: 50px;
+      width: 5rem;
+      height: 5rem;
     }
   }
 `;

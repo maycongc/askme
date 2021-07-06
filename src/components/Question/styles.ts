@@ -14,9 +14,9 @@ export const QuestionWrapper = styled.article`
   width: 100%;
 
   border: 0;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
 
-  padding: 24px;
+  padding: 2.4rem;
 
   &:hover {
     @keyframes jump {
@@ -34,7 +34,7 @@ export const QuestionWrapper = styled.article`
   p {
     width: 100%;
     height: fit-content;
-    font: 400 16px 'Roboto', sans-serif;
+    font: 400 1.6rem 'Roboto', sans-serif;
     text-align: justify;
   }
 
@@ -69,20 +69,20 @@ export const QuestionFooterWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 24px;
+  margin-top: 2.4rem;
 
   .question-user-info {
     display: flex;
     align-items: center;
 
     img {
-      width: 32px;
-      border-radius: 16px;
-      margin-right: 8px;
+      width: 3.2rem;
+      border-radius: 1.6rem;
+      margin-right: 0.8rem;
     }
 
     span {
-      font: 400 14px 'Roboto', sans-serif;
+      font: 400 1.4rem 'Roboto', sans-serif;
       color: ${p => p.theme.colors.gray2};
     }
   }
@@ -98,17 +98,17 @@ export const QuestionFooterWrapper = styled.div`
     .like-content {
       display: flex;
       align-items: flex-end;
-      gap: 7px;
+      gap: 0.7rem;
 
       span {
         transition: all 0.2s ease;
-        font: 400 16px 'Poppins', sans-serif;
+        font: 400 1.6rem 'Poppins', sans-serif;
         color: ${p => p.theme.colors.color1};
       }
     }
 
     button + button {
-      margin-left: 16px;
+      margin-left: 1.6rem;
     }
 
     .check:hover,

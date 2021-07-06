@@ -46,12 +46,12 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
   width: fit-content;
 
-  gap: 10px;
+  gap: 1rem;
 
   button:nth-child(-n + 2) {
-    height: 40px;
-    border-radius: 8px;
-    font: 500 14px 'Roboto', sans-serif;
+    height: 4rem;
+    border-radius: 0.8rem;
+    font: 500 1.4rem 'Roboto', sans-serif;
     cursor: pointer;
   }
 `;
@@ -65,7 +65,7 @@ export const RoomButtonWrapper = styled(Button)`
   align-items: center;
   justify-content: space-between;
 
-  font: 500 14px 'Poppins';
+  font: 500 1.4rem 'Poppins';
 
   border: 1px solid ${p => p.theme.colors.color1};
   background-color: ${p => p.theme.colors.color1};
@@ -81,13 +81,13 @@ export const RoomButtonWrapper = styled(Button)`
     height: 100%;
     background-color: ${p => p.theme.colors.color1};
 
-    padding: 0 8px;
+    padding: 0 0.8rem;
 
     img {
       display: flex;
       align-self: center;
       justify-self: center;
-      width: 21px;
+      width: 2.1rem;
     }
   }
 
@@ -102,7 +102,7 @@ export const RoomButtonWrapper = styled(Button)`
         : p.theme.colors.background1};
     color: ${p => p.theme.colors.color1};
 
-    padding: 0 7px;
+    padding: 0 0.7rem;
 
     transition: all 0.3s ease;
   }
