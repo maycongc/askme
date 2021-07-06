@@ -6,24 +6,27 @@ export const ModalContentWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  border-radius: 16px;
+  border-radius: 1.6rem;
+  margin: 0 1rem;
 
-  width: 400px;
-  height: 420px;
+  width: 40rem;
+  height: 42rem;
 
   background: ${p =>
     p.theme.title === 'dark'
       ? p.theme.colors.background3
       : p.theme.colors.background1};
 
-  gap: 20px;
+  gap: 2rem;
 
   h2 {
-    font: 700 22px 'Poppins', sans-serif;
+    width: 20rem;
+    font: 700 2rem 'Poppins', sans-serif;
+    text-align: center;
   }
 
   button {
-    width: 260px;
+    width: 26rem;
 
     &:not(:disabled):hover {
       filter: brightness(0.8);
@@ -31,12 +34,19 @@ export const ModalContentWrapper = styled.div`
   }
 
   .cancel {
-    margin-top: 10px;
-    width: 100px;
-    height: 40px;
+    margin-top: 1rem;
+    width: 10rem;
+    height: 4rem;
     color: ${p => p.theme.colors.text2};
     background: ${p =>
       p.theme.title === 'dark' ? '#f0f0f0' : p.theme.colors.gray1};
+  }
+
+  @media (min-width: 400px) {
+    h2 {
+      width: 100%;
+      font-size: 2.2rem;
+    }
   }
 `;
 
@@ -48,13 +58,13 @@ export const LoginButtonsWrapper = styled.div`
   width: fit-content;
   height: fit-content;
 
-  gap: 8px;
+  gap: 0.8rem;
 
   .google {
     background: ${p => p.theme.colors.color3};
 
     img {
-      width: 24px;
+      width: 2.4rem;
     }
   }
 
@@ -62,7 +72,7 @@ export const LoginButtonsWrapper = styled.div`
     background: #3b5898;
 
     img {
-      width: 26px;
+      width: 2.6rem;
       filter: invert(100%);
     }
   }
@@ -71,7 +81,7 @@ export const LoginButtonsWrapper = styled.div`
     background: rgb(47, 48, 65);
 
     img {
-      width: 28px;
+      width: 2.8rem;
       filter: invert(100%);
     }
   }
@@ -80,7 +90,7 @@ export const LoginButtonsWrapper = styled.div`
     background: #720e9e;
 
     img {
-      width: 22px;
+      width: 2.2rem;
       filter: invert(100%);
     }
   }
