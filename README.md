@@ -50,17 +50,18 @@ Este projeto visa a auxiliar pessoas, como por exemplo um streamer, a sanar as d
 
 ## ✅ Feature
 
-- **[ done ]** Autenticação com contas Google, Facebook, GitHub e Yahoo
-- **[ done ]** Criar sala de perguntas e respostas (se autenticado)
-- **[ done ]** Fechar sala (se autenticado como autor da sala)
-- **[ done ]** Entrar em uma sala
-- **[ done ]** Enviar pergunta (se autenticado)
-- **[ done ]** Carregar perguntas do BD em tempo real
-- **[ done ]** Reagir a uma pergunta (se autenticado e não sendo o autor da sala)
-- **[ done ]** Destacar pergunta (se autenticado como autor da sala)
-- **[ done ]** Marcar pergunta como respondida (se autenticado como autor da sala)
-- **[ done ]** Excluir pergunta (se autenticado como autor da sala)
-- **[ done ]** Mudança de tema (dark e light) com gravação no localStorage.
+- [x] Autenticação com contas Google, Facebook, GitHub e Yahoo
+- [x] Criar sala de perguntas e respostas (se autenticado)
+- [x] Fechar sala (se autenticado como autor da sala)
+- [x] Entrar em uma sala
+- [x] Enviar pergunta (se autenticado)
+- [x] Carregar perguntas do BD em tempo real
+- [x] Reagir a uma pergunta (se autenticado e não sendo o autor da sala)
+- [x] Destacar pergunta (se autenticado como autor da sala)
+- [x] Marcar pergunta como respondida (se autenticado como autor da sala)
+- [x] Excluir pergunta (se autenticado como autor da sala)
+- [x] Mudança de tema (dark e light) com gravação no localStorage.
+- [x] Responsividade.
 
 <br />
 
